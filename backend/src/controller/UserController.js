@@ -1,4 +1,4 @@
-import { createNewUser } from "../services/userService";
+import { createNewUser } from "../services/UserService.js";
 
 const create = (req, res) => {
   if (createNewUser) {
@@ -8,4 +8,4 @@ const create = (req, res) => {
   }
 };
 
-export { create };
+export default create;
