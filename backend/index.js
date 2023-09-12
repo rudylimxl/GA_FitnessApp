@@ -1,23 +1,19 @@
 import express from "express";
 import cors from "cors";
 import "dotenv/config";
-import mongoose from "mongoose";
+import mongoose from "./src/config/mongoDB.js";
 import bodyParser from "body-parser";
-import passport from "passport";
+import userRouter from "./src/routes/userRouter.js";
 
 const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
-
-app.use(passport.initialize());
-app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
 
-const uri = process.env.URI;
+app.use("/", userRouter);
 
-mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-mongoose.connection.on("connected", () => {
-  console.log("Connected to MongoDB");
+app.listen(() => {
+  console.log(`Server running on ${process.env.PORT}`);
 });

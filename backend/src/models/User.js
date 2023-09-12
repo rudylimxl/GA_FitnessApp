@@ -1,7 +1,5 @@
 import mongoose from "mongoose";
 
-// TO EDIT
-
 const userSchema = new mongoose.Schema({
   email: {
     type: String,
@@ -20,6 +18,7 @@ const userSchema = new mongoose.Schema({
     type: Date,
     default: new Date(),
   },
+  userDetailId: { type: mongoose.Types.ObjectId, ref: "UserDetail" },
 });
 
 const User = mongoose.model("User", userSchema);
