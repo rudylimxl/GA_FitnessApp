@@ -9,4 +9,22 @@ const createNewUser = async (user) => {
   }
 };
 
-export { createNewUser };
+export { createNewUser, getAllUser, getUser };
+
+const getAllUser = async () => {
+  try {
+    const allUser = await User.find({});
+    return allUser;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const getUser = async (id) => {
+  try {
+    const user = await User.findById(id);
+    return user;
+  } catch (err) {
+    console.log(err);
+  }
+};

@@ -1,4 +1,3 @@
-import { createNewUserDetail } from "../services/UserDetailService.js";
 import { createNewUser } from "../services/UserService.js";
 
 const create = async (req, res) => {
@@ -14,4 +13,22 @@ const create = async (req, res) => {
   }
 };
 
-export default create;
+const getAllUserData = async (req, res) => {
+  try {
+    const allUser = await getAllUser();
+    res.json({ allUser });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const getUserData = async (req, res) => {
+  try {
+    const user = await getUser(req.params.id);
+    res.json({ user });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export { create, getAllUserData, getUserData };
