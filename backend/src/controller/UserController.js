@@ -1,10 +1,13 @@
 import { createNewUser } from "../services/UserService.js";
 
-const create = (req, res) => {
-  if (createNewUser) {
-    res.json("User created");
-  } else {
-    res.json("Error");
+const create = async (req, res) => {
+  try {
+    //add a new user
+    await createNewUser(req.body);
+    res.send("User created");
+  } catch (error) {
+    console.log(error.message);
+    res.send("Unable to create new user, see console");
   }
 };
 
