@@ -18,7 +18,7 @@ const userSchema = new mongoose.Schema({
     type: Date,
     default: new Date(),
   },
-  userDetailId: { type: mongoose.Types.ObjectId, ref: "UserDetail" },
+  userDetail: { type: mongoose.Schema.Types.ObjectId, ref: "UserDetail" },
 });
 
 const User = mongoose.model("User", userSchema);
