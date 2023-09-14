@@ -14,6 +14,6 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use("/", userRouter);
 
-app.listen(() => {
+app.listen(process.env.PORT, () => {
   console.log(`Server running on ${process.env.PORT}`);
 });
