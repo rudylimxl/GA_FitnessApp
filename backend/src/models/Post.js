@@ -10,8 +10,8 @@ const postSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  userType: { type: String, enum: ["User", "Trainer"], required: true },
-  userId: { type: Schema.Types.ObjectId, ref: "Userdetail" },
+  userType: { type: String, enum: ["user", "trainer"], required: true },
+  user: { type: mongoose.Schema.Types.ObjectId, ref: "Userdetail" },
 });
 
 const Posts = mongoose.model("Post", postSchema);
