@@ -4,6 +4,7 @@ import {
   getOnePost,
   deleteOnePost,
   addNewComment,
+  getAllComments,
 } from "../services/postService.js";
 
 async function create(req, res, next) {
@@ -57,4 +58,14 @@ async function createComment(req, res, next) {
   }
 }
 
-export { create, index, show, deletePost, createComment };
+async function indexComment(req, res, next) {
+  try {
+    let allComments = await getAllComments(req.params.id);
+    res.json(allComments);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Unable to get comments.");
+  }
+}
+
+export { create, index, show, deletePost, createComment, indexComment };

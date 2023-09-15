@@ -15,6 +15,9 @@ postRouter.get("/:id", postController.show);
 // Route to delete a specific post
 postRouter.delete("/:id", postController.deletePost);
 
+// Route to retrieve all commments for a specific post
+postRouter.get("/:id/comments", postController.indexComment);
+
 // Route to create a comment for a specific post
 postRouter.post("/:id/comments", postController.createComment);
 

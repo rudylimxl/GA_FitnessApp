@@ -49,4 +49,19 @@ async function addNewComment(id, commentInfo) {
   }
 }
 
-export { addPost, getAllPosts, getOnePost, deleteOnePost, addNewComment };
+// Get all comments for a specific post from DB
+async function getAllComments(id) {
+  try {
+    let post = await Posts.findById(id);
+    return post.comments;
+  } catch (error) {}
+}
+
+export {
+  addPost,
+  getAllPosts,
+  getOnePost,
+  deleteOnePost,
+  addNewComment,
+  getAllComments,
+};
