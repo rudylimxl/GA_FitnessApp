@@ -9,4 +9,14 @@ async function addPost(postDetails) {
   }
 }
 
-export { addPost };
+// Get all posts for a specific user from DB
+async function getAllPosts(userId) {
+  try {
+    let allPosts = await Posts.findById(userId).populate("posts");
+    return allPosts;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export { addPost, getAllPosts };
