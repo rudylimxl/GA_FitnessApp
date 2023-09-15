@@ -38,4 +38,15 @@ async function deleteOnePost(id) {
   }
 }
 
-export { addPost, getAllPosts, getOnePost, deleteOnePost };
+// Add a new comment for a specific post to DB
+async function addNewComment(id, commentInfo) {
+  try {
+    const post = await Posts.findById(id);
+    post.comments.push(commentInfo);
+    await post.save();
+  } catch (error) {
+    throw error;
+  }
+}
+
+export { addPost, getAllPosts, getOnePost, deleteOnePost, addNewComment };
