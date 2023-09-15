@@ -1,7 +1,13 @@
 import mongoose from "mongoose";
 
-// TO EDIT
+// Comments subdocument schema
+const commentSchema = new mongoose.Schema({
+  user: { type: mongoose.Schema.Types.ObjectId, ref: "Userdetail" },
+  comment: { type: String, required: true },
+  date: { type: date, default: new Date() },
+});
 
+// Posts collection
 const postSchema = new mongoose.Schema({
   title: { type: String, required: true },
   description: String,
@@ -12,6 +18,7 @@ const postSchema = new mongoose.Schema({
   },
   userType: { type: String, enum: ["user", "trainer"], required: true },
   user: { type: mongoose.Schema.Types.ObjectId, ref: "Userdetail" },
+  comments: [commentSchema],
 });
 
 const Posts = mongoose.model("Post", postSchema);
