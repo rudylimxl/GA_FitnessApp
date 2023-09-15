@@ -5,7 +5,7 @@ async function addPost(postDetails) {
   try {
     await Posts.create(postDetails);
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 }
 
@@ -15,7 +15,7 @@ async function getAllPosts(userId) {
     let allPosts = await Posts.findById(userId).populate("posts");
     return allPosts;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 }
 
@@ -25,8 +25,17 @@ async function getOnePost(id) {
     let post = await Posts.findById(id);
     return post;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 }
 
-export { addPost, getAllPosts, getOnePost };
+// Delete a specific post from DB
+async function deleteOnePost(id) {
+  try {
+    await Posts.findByIdAndDelete(id);
+  } catch (error) {
+    throw error;
+  }
+}
+
+export { addPost, getAllPosts, getOnePost, deleteOnePost };

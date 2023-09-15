@@ -12,4 +12,7 @@ postRouter.get("/", postController.index);
 // Route to get a specific post
 postRouter.get("/:id", postController.show);
 
+// Route to delete a specific post
+postRouter.delete("/:id", postController.deletePost);
+
 export default postRouter;

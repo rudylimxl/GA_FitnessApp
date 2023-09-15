@@ -1,12 +1,17 @@
-import { addPost, getAllPosts, getOnePost } from "../services/postService.js";
+import {
+  addPost,
+  getAllPosts,
+  getOnePost,
+  deleteOnePost,
+} from "../services/postService.js";
 
 async function create(req, res, next) {
   try {
     await addPost(req.body);
-    res.send("Post successfully uploaded.");
+    res.status(201).send("Post successfully uploaded.");
   } catch (err) {
-    console.log(err.message);
-    res.send("Error uploading post...");
+    console.error(err);
+    res.status(500).send("Error uploading post.");
   }
 }
 
@@ -16,8 +21,8 @@ async function index(req, res, next) {
     let allposts = await getAllPosts(req.body.userId);
     res.json(allposts);
   } catch (err) {
-    console.log(err.message);
-    res.send("Unable to retrieve posts.");
+    console.error(err);
+    res.status(500).send("Unable to retrieve posts.");
   }
 }
 
@@ -26,9 +31,19 @@ async function show(req, res, next) {
     let onePost = await getOnePost(req.params.id);
     res.json(onePost);
   } catch (err) {
-    console.log(err.message);
-    res.send("Unable to retrieve post.");
+    console.error(err);
+    res.status(500).send("Unable to retrieve post.");
   }
 }
 
-export { create, index, show };
+async function deletePost(req, res, next) {
+  try {
+    await deleteOnePost(req.params.id);
+    res.send("Post successfully deleted.");
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Unable to delete post.");
+  }
+}
+
+export { create, index, show, deletePost };
