@@ -1,4 +1,4 @@
-import { addPost, getAllPosts } from "../services/postService.js";
+import { addPost, getAllPosts, getOnePost } from "../services/postService.js";
 
 async function create(req, res, next) {
   try {
@@ -21,4 +21,14 @@ async function index(req, res, next) {
   }
 }
 
-export { create, index };
+async function show(req, res, next) {
+  try {
+    let onePost = await getOnePost(req.params.id);
+    res.json(onePost);
+  } catch (err) {
+    console.log(err.message);
+    res.send("Unable to retrieve post.");
+  }
+}
+
+export { create, index, show };

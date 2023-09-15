@@ -4,8 +4,8 @@ import Posts from "../models/Post.js";
 async function addPost(postDetails) {
   try {
     await Posts.create(postDetails);
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
+    console.log(error);
   }
 }
 
@@ -14,9 +14,19 @@ async function getAllPosts(userId) {
   try {
     let allPosts = await Posts.findById(userId).populate("posts");
     return allPosts;
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
+    console.log(error);
   }
 }
 
-export { addPost, getAllPosts };
+// Get one post by the post id from DB
+async function getOnePost(id) {
+  try {
+    let post = await Posts.findById(id);
+    return post;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export { addPost, getAllPosts, getOnePost };
