@@ -3,17 +3,17 @@ import mongoose from "mongoose";
 // TO EDIT
 
 const postSchema = new mongoose.Schema({
-  type: {
-    type: String,
-  },
+  title: { type: String, required: true },
+  description: String,
+  tags: [String],
   url: {
     type: String,
+    required: true,
   },
-  userId: {
-    type: String,
-  },
+  userType: { type: String, enum: ["user", "trainer"], required: true },
+  user: { type: mongoose.Schema.Types.ObjectId, ref: "Userdetail" },
 });
 
-const Posts = mongoose.model("Posts", postSchema);
+const Posts = mongoose.model("Post", postSchema);
 
 export default Posts;
