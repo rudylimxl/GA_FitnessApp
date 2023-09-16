@@ -19,7 +19,6 @@ async function create(req, res, next) {
 
 async function index(req, res, next) {
   try {
-    //call service that will return all posts
     let allposts = await getAllPosts(req.body.userId);
     res.json(allposts);
   } catch (error) {

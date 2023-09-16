@@ -13,7 +13,7 @@ async function addPost(postDetails) {
 // Get all posts for a specific user from DB
 async function getAllPosts(userId) {
   try {
-    let allPosts = await Posts.findById(userId).populate("posts");
+    let allPosts = await Posts.find({ user: userId });
     return allPosts;
   } catch (error) {
     throw error;

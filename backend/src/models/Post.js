@@ -16,6 +16,7 @@ const postSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  date: { type: Date, default: new Date() },
   userType: { type: String, enum: ["user", "trainer"], required: true },
   user: { type: mongoose.Schema.Types.ObjectId, ref: "UserDetail" },
   comments: [commentSchema],
