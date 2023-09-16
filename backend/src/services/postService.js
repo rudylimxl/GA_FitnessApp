@@ -1,4 +1,5 @@
 import Posts from "../models/Post.js";
+import UserDetail from "../models/UserDetail.js";
 
 // Add a new post to DB
 async function addPost(postDetails) {
@@ -52,9 +53,14 @@ async function addNewComment(id, commentInfo) {
 // Get all comments for a specific post from DB
 async function getAllComments(id) {
   try {
-    let post = await Posts.findById(id);
+    let post = await Posts.findById(id).populate({
+      path: "comments",
+      populate: { path: "user" },
+    });
     return post.comments;
-  } catch (error) {}
+  } catch (error) {
+    throw error;
+  }
 }
 
 export {
