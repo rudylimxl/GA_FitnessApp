@@ -1,7 +1,13 @@
 import express from "express";
 import * as postController from "../controller/postController.js";
+import multer from "multer";
+import { uploadFileFn, getFileList } from "../controller/FilesController.js";
 
 const postRouter = express.Router();
+const upload = multer();
+
+postRouter.post("/upload", upload.single("files"), uploadFileFn);
+postRouter.get("/files", getFileList);
 
 // Route to add a post
 postRouter.post("/", postController.create);

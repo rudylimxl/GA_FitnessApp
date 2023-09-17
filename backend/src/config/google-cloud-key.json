@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "animated-subset-399202",
+  "private_key_id": "a7ff06c9040bc531e00c7772904ac7874425146c",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEuwIBADANBgkqhkiG9w0BAQEFAASCBKUwggShAgEAAoIBAQC5zq4mb1lnOnip\nmMcZK9rNL68zqRfkTgkH1uZCcgYTLpZ6dDEJaGAO7ae1OBnY5Obt7XNZkrnvDWh4\nvoNYUDO6dD0nYXUuGCs7TFgCNnzysNgQrOlCsFCcHjIrHTQrCnuy5YWdY0ddxA4w\nrbCl9ocY/10C2wp4c69NZeASj/mpgBknhTlYl0Wp+D5orhghiaTVQ+qR3nuekZuT\nGuGK5tci+dckkjap/ri34lgGfKuitsV2w8iMSzf2zGgk5tKVTVbmDz0gm2joYRmP\nIMv9iI6gBRfGl7+V4XXXaUYxj4Js1nW1VtmEMJWNh4Gze5I78ncBhSeqUiDCZ1x2\nkkwyfwZFAgMBAAECggEAHXRyBLNxJkf4JIE3dWTk2NMpgH8v7j11TrIBVYuILVac\n0d5afwXLTdfcgVdajZjCh6Q1PYALi/sBp+Z3oYfb82pa3sPN1Nf4U9GnP/k4TIFp\nTGzExjwiGJBBiWEl9Hlty5nOrnkJsV0Tl3bpV8iMI75+QFDN85352RirG/Yz8JZn\nUEUmhfM46uKekNtQCdUwM2My1M3gWptOpkEOfC2IYsvzz8fc4H6zROb2KJIEG3wS\na8ehuO5GnNQSda8txQXxSKVvylB5nB+ELxIBIeKKbDw9sTvLWvJ1hem+l68s4gH+\nA5ES7l92MULZO9XJ8GEd53l91i78Hkm01AqUPK5kTwKBgQDfmiQI77yrdX2pb2E6\nv1V7/eL7pD5vBd/RtpZJ12hILoaFhncTu2XtTFwkAvJl7+0/rEQEtVvmWOo5pYtR\nOZSwdqaCTeyIRNVTe+yRZX3RU52VqNR8/2Fvzed7WEfPk2Mj1R/LYw0Y0ALLzgrW\nCJOMFzfaMBnS7tn7CUT08VB5AwKBgQDUuqeEAYgzq8HN0kJuj52gY76pmLDJ9ZIj\nlQI1/EJLBQRwi2pi641BjxvCs39hcbbG91UJkGM2e/9dr99MknoIpN7im6UXvwN3\n4fmKjYDuTotH2Eu7fdGFPuCFSe+8k/+mbAScZErQEiONDaRF/DTPuLoLTb0wm5Fp\nHwYc9bUNFwKBgQCjzX2cdlOWn6mA2DE4IjZzcNg5VGbQWlNOhB2w1nZ0enDdnFXb\nRKs0nX3ae7Yrawo4XPAvKtS5+GUN+fIHfNEqPKFaT895PEOyttPk5562HDUTD+0p\n7MPqbcKoH1HsBKLZ+yUhj9xmUuvZdYWGqh28wL2PvzELzyIsvuufLLCxFQJ/Pycq\nlAXgaXaUEoZZMnlwUi1KbQ7nbQ16VRXnkh9RjvPuXXsGGlfTl6Lkmuiu6D7aBDdp\nB23WBlbJeQa9Q/44PFi10pBicqpCXVS4wGlB3X1z2+Bam06+5M/F18wbX+CQBNgM\nhmE/1IWOCFIEcsJs6z3r/W8Wu1dz08FiDzbiiQKBgFeIWQjmEcr3wV0uOXxs7seq\nAI+lDW8ONcHiTmA5On/M7wQ4/4/4oInGNwaaiu/7X+a8H/QlNHQ7PzpNW77J85/x\nY70zdbkFNZEbEIZxn7S06ltcCelemQVSr5x8bDhV9QbOXtUpblqR0FjRMQg7yMJM\n0wN6aG1SW4sgfQDgs8TY\n-----END PRIVATE KEY-----\n",
+  "client_email": "bkr-fitapp-gcs@animated-subset-399202.iam.gserviceaccount.com",
+  "client_id": "114095767138746601403",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/bkr-fitapp-gcs%40animated-subset-399202.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
