@@ -25,7 +25,6 @@ const PostImages = (arr) => {
   } else {
     return <div>loading posts</div>;
   }
-  //   return <h1>hi</h1>;
 };
 
 export default PostImages;

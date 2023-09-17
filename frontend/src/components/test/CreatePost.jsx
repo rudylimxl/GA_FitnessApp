@@ -8,6 +8,8 @@ import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
 import { useState, useRef } from "react";
 import axios from "axios";
 
+//FilePond is the component to browse/preview files before upload
+
 registerPlugin(
   FilepondPluginImagePreview,
   FilePondPluginMediaPreview,
@@ -24,20 +26,18 @@ const CreatePost = () => {
     e.preventDefault();
 
     let formData = new FormData();
+    //FormData() creates a multipart/form-data request body type instead of JSON
+    //This is necessary to facilitate file uploading
 
     formData.append("title", titleRef.current.value);
     formData.append("description", descriptionRef.current.value);
     formData.append("tags", tagsRef.current.value);
 
     formData.append("files", files[0].file);
-    // formData.append("name", "rudy");
-    console.log(files[0]);
-
-    console.log(formData);
 
     axios.post("http://localhost:8000/posts/", formData, {}).then((res) => {
       console.log(res.data);
-      alert("file uploaded!");
+      alert("Post uploaded!");
     });
   };
 

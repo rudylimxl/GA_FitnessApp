@@ -11,8 +11,11 @@ const uploadToCloudStorage = async (req) => {
   try {
     const { mimetype, originalname, size } = req.file;
     const unixTime = Date.now();
+    //unixtime is to generate a unique filename
     const file = bucket.file(unixTime);
+    //bucket.file(unixTime) creates a new file with filename unixTime
     await file.save(req.file.buffer, { contentType: mimetype });
+    //buffer is the actual file stored in temporary memory
     const url = `https://storage.googleapis.com/${bucket.name}/${file.name}`;
     console.log(`file uploaded to ${url}`);
     return url;
@@ -24,6 +27,7 @@ const uploadToCloudStorage = async (req) => {
 const getCloudStorageList = async () => {
   try {
     const [files] = await bucket.getFiles();
+    //bucket.getFiles() lists all the files in the bucket
     let fileInfos = [];
 
     files.forEach((file) => {

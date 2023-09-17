@@ -5,6 +5,10 @@ import { uploadFileFn, getFileList } from "../controller/FilesController.js";
 
 const postRouter = express.Router();
 const upload = multer();
+//Express can't process multipart/form-data request body.
+//multer helps as a middleware to process request body.
+//calling req.file will give the file included in the request body
+//req.body will contain the rest of the form
 
 postRouter.post("/upload", upload.single("files"), uploadFileFn);
 postRouter.get("/files", getFileList);
