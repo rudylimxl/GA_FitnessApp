@@ -5,14 +5,18 @@ const PostImages = (arr) => {
       if (e.type.includes("image")) {
         return (
           <>
-            <p>filename:{e.name}</p>
+            <p>
+              filename:{e.name}, {e.type}
+            </p>
             <img src={e.url} key={index} height="300px"></img>
           </>
         );
       } else if (e.type.includes("video")) {
         return (
           <>
-            <p>filename:{e.name}</p>
+            <p>
+              filename:{e.name}, {e.type}
+            </p>
             <video src={e.url} key={index} height="250px" controls></video>
           </>
         );

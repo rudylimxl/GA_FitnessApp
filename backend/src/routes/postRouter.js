@@ -10,7 +10,7 @@ postRouter.post("/upload", upload.single("files"), uploadFileFn);
 postRouter.get("/files", getFileList);
 
 // Route to add a post
-postRouter.post("/", postController.create);
+postRouter.post("/", upload.single("files"), postController.create);
 
 // Route to get all posts. Need to receive specific user id inside request body
 postRouter.get("/", postController.index);
