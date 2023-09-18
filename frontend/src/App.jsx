@@ -1,30 +1,28 @@
-import { useState } from "react";
-
-import viteLogo from "/vite.svg";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Test from "./components/test/test.jsx";
+import UserProfile from "./components/test/User.jsx";
+import Posts from "./components/test/Posts.jsx";
+import CreatePost from "./components/test/CreatePost.jsx";
 import "./App.css";
+import Profile from "./pages/Profile.jsx";
+import AppHome from "./pages/AppHome.jsx";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/app" element={<AppHome />} />
+
+          <Route path="/user" element={<Profile />}>
+            <Route index element={<UserProfile />} />
+            <Route path="posts" element={<Posts />} />
+            <Route path="posts/create" element={<CreatePost />} />
+          </Route>
+
+          <Route path="/trainer" element={<Test />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }

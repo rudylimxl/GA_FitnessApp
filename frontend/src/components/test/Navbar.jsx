@@ -1,14 +1,10 @@
 import { Link } from "react-router-dom";
+import "../../App.css";
 
 const Navbar = () => {
   return (
     <div className="navbar">
-      <h3>Navbar |</h3>
-      <Link to="/">
-        {" "}
-        <h4>Vite</h4>
-      </Link>
-      <Link to="/test">
+      <Link to="/app">
         {" "}
         <h4>Home</h4>
       </Link>
@@ -20,6 +16,8 @@ const Navbar = () => {
         {" "}
         <h4>Trainer</h4>
       </Link>
+      <h4>Notifications</h4>
+      <h4>Logout</h4>
     </div>
   );
 };
