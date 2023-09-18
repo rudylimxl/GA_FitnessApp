@@ -6,6 +6,7 @@ import CreatePost from "./components/test/CreatePost.jsx";
 import "./App.css";
 import Profile from "./pages/Profile.jsx";
 import AppHome from "./pages/AppHome.jsx";
+import PostEditor from "./components/test/PostEditor.jsx";
 
 function App() {
   return (
@@ -16,8 +17,9 @@ function App() {
 
           <Route path="/user" element={<Profile />}>
             <Route index element={<UserProfile />} />
-            <Route path="posts" element={<Posts />} />
-            <Route path="posts/create" element={<CreatePost />} />
+            <Route path="/user/posts" element={<Posts />} />
+            <Route path="/user/posts/:id" element={<PostEditor />} />
+            <Route path="/user/posts/create" element={<CreatePost />} />
           </Route>
 
           <Route path="/trainer" element={<Test />} />

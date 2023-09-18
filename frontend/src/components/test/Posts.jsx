@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import PostImages from "./PostImages";
+import PostItems from "./PostItems";
 
 const Posts = () => {
   let allPosts = [];
@@ -20,7 +20,7 @@ const Posts = () => {
   return (
     <div>
       <h4>Posts</h4>
-      <PostImages posts={files}></PostImages>
+      <PostItems posts={files}></PostItems>
     </div>
   );
 };

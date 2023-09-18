@@ -75,3 +75,18 @@
 .post-title {
   width: 300px;
 }
+
+.post-item {
+  display: flex;
+  flex-direction: column;
+  border: 2px dashed gray;
+  background: rgb(223, 219, 219);
+  margin: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.post-editor-wrapper button {
+  display: block;
+  margin: 0 auto;
+}
