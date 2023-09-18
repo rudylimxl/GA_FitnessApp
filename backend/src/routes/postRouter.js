@@ -1,10 +1,20 @@
 import express from "express";
 import * as postController from "../controller/postController.js";
+import multer from "multer";
+import { uploadFileFn, getFileList } from "../controller/FilesController.js";
 
 const postRouter = express.Router();
+const upload = multer();
+//Express can't process multipart/form-data request body.
+//multer helps as a middleware to process request body.
+//calling req.file will give the file included in the request body
+//req.body will contain the rest of the form
+
+postRouter.post("/upload", upload.single("files"), uploadFileFn);
+postRouter.get("/files", getFileList);
 
 // Route to add a post
-postRouter.post("/", postController.create);
+postRouter.post("/", upload.single("files"), postController.create);
 
 // Route to get all posts. Need to receive specific user id inside request body
 postRouter.get("/", postController.index);

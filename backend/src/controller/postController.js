@@ -1,3 +1,4 @@
+import { uploadToCloudStorage } from "../services/FileService.js";
 import {
   addPost,
   getAllPosts,
@@ -7,9 +8,28 @@ import {
   getAllComments,
 } from "../services/postService.js";
 
+// async function create(req, res, next) {
+//   try {
+//     await addPost(req.body);
+//     res.status(201).send("Post successfully uploaded.");
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).send("Error uploading post.");
+//   }
+// }
+// (original version from  Ben)
+
 async function create(req, res, next) {
   try {
-    await addPost(req.body);
+    const url = await uploadToCloudStorage(req);
+    const postData = {
+      ...req.body,
+      url: url,
+      userType: "user",
+      user: "6505b4f0940b11b3fe8a55d9",
+    };
+    // right now user type and userId is hardcoded
+    await addPost(postData);
     res.status(201).send("Post successfully uploaded.");
   } catch (error) {
     console.error(error);
