@@ -1,0 +1,16 @@
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  grid-template-rows: 500px 1fr;
+  justify-content: center;
+}
+
+.layout > video {
+  margin: 0 auto;
+}
+
+.comments {
+  margin-top: 30px;
+  grid-column: 1 / -1;
+  grid-row: 2 / 3;
+}
