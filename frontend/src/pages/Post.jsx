@@ -1,6 +1,7 @@
 import Navbar from "../components/test/Navbar";
 import PostDetails from "../components/post-details/PostDetails";
 import styles from "./Post.module.css";
+import Comments from "../components/post-details/Comments";
 
 const Post = () => {
   return (
@@ -13,9 +14,11 @@ const Post = () => {
           height="80%"
           controls
         ></video>
-        <PostDetails />
+        <div>
+          <PostDetails />
+        </div>
         <div className={styles.comments}>
-          <h1>Comments</h1>
+          <Comments />
         </div>
       </div>
     </>

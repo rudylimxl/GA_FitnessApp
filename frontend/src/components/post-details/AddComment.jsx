@@ -27,6 +27,7 @@ const AddComment = () => {
           rows={5}
         />
       </Box>
+      <button>Post comment</button>
     </div>
   );
 };
