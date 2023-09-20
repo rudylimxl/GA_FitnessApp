@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Test from "./components/test/test.jsx";
 import UserProfile from "./components/test/User.jsx";
 import Posts from "./components/test/Posts.jsx";
 import CreatePost from "./components/test/CreatePost.jsx";
@@ -21,7 +20,6 @@ function App() {
             <Route path="posts/create" element={<CreatePost />} />
           </Route>
           <Route path="/post/:id" element={<Post />} />
-          <Route path="/trainer" element={<Test />} />
         </Routes>
       </BrowserRouter>
     </>
