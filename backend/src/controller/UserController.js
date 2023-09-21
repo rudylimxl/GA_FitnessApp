@@ -11,10 +11,10 @@ const create = async (req, res) => {
     const id = await createNewUserDetail(req.body.userDetail);
     // add a new user referencing the user detail
     await createNewUser(req.body, id);
-    res.send("User created");
+    res.status(201).send("User created sucessfully");
   } catch (error) {
     console.log(error.message);
-    res.send("Unable to create new user, see console");
+    res.status(500).send("Error in creating user");
   }
 };
 
@@ -24,6 +24,7 @@ const index = async (req, res) => {
     res.json(userDetails);
   } catch (err) {
     console.log(err);
+    res.status(500).send("Unable to retrieve user details");
   }
 };
 
@@ -33,6 +34,7 @@ const show = async (req, res) => {
     res.json(userDetail);
   } catch (err) {
     console.log(err);
+    res.status(500).send("Unable to retrieve user details");
   }
 };
 
