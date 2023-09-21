@@ -1,15 +1,15 @@
 import Navbar from "../components/test/Navbar";
 import { Outlet } from "react-router-dom";
-import ProfileInfo from "../components/ProfileInfo";
+import Profile from "../components/Profile";
 
-const Profile = () => {
+const ProfilePage = () => {
   return (
     <div>
       <Navbar />
-      <ProfileInfo />
+      <Profile />
       <Outlet />
     </div>
   );
 };
 
-export default Profile;
+export default ProfilePage;
