@@ -4,6 +4,10 @@ import CloseIcon from "@mui/icons-material/Close";
 import { useRef, useState } from "react";
 import TextField from "@mui/material/TextField";
 import styles from "./EditProfile.module.css";
+import axios from "axios";
+import Alert from "@mui/material/Alert";
+import IconButton from "@mui/material/IconButton";
+import Collapse from "@mui/material/Collapse";
 
 // Import React FilePond
 import { FilePond, registerPlugin } from "react-filepond";
@@ -17,7 +21,9 @@ registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
 const EditProfile = () => {
   const [profileInfo, setProfileInfo] = useState({});
   //state that stores profile picture
-  const [profilePic, setProfilePic] = useState();
+  const [profilePic, setProfilePic] = useState([]);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(false);
 
   const dialogRef = useRef(null);
 
@@ -39,19 +45,35 @@ const EditProfile = () => {
     });
   };
 
-  //TODO: handles updating of profile information to the database
+  //handles updating of profile information to the database
   const handleUpdate = () => {
     //create formdata and append states to the form
     let formData = new FormData();
     for (const key in profileInfo) {
       formData.append(key, profileInfo[key]);
     }
-    formData.append("files", profilePic[0]);
+    if (profilePic.length !== 0) {
+      formData.append("files", profilePic[0].file);
+    }
 
-    //call API endpoint
+    const userId = "6505b4f0940b11b3fe8a55d7";
 
-    //if successfull, close the modal
-    closeModal();
+    //Submit put request to backend server
+    axios
+      .put(`http://localhost:8000/user/${userId}`, formData)
+      .then((res) => {
+        //if successfull, close the modal
+        if (res.status === 200) {
+          closeModal();
+          setSuccess(true);
+        } else {
+          setError(true);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        setError(true);
+      });
   };
 
   return (
@@ -133,7 +155,51 @@ const EditProfile = () => {
             Update
           </Button>
         </div>
+        <div className={styles.errorAlert}>
+          <Collapse in={error}>
+            <Alert
+              severity="error"
+              action={
+                <IconButton
+                  aria-label="close"
+                  color="inherit"
+                  size="small"
+                  onClick={() => {
+                    setError(false);
+                  }}
+                >
+                  <CloseIcon fontSize="inherit" />
+                </IconButton>
+              }
+              sx={{ mb: 2 }}
+            >
+              Error updating profile, please try again..
+            </Alert>
+          </Collapse>
+        </div>
       </dialog>
+
+      <div className={styles.successAlert}>
+        <Collapse in={success}>
+          <Alert
+            action={
+              <IconButton
+                aria-label="close"
+                color="inherit"
+                size="small"
+                onClick={() => {
+                  setSuccess(false);
+                }}
+              >
+                <CloseIcon fontSize="inherit" />
+              </IconButton>
+            }
+            sx={{ mb: 2 }}
+          >
+            Profile succesfully updated!
+          </Alert>
+        </Collapse>
+      </div>
     </>
   );
 };

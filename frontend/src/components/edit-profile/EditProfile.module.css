@@ -38,3 +38,16 @@ dialog::backdrop {
 .closeModalBtn:hover {
   background-color: red;
 }
+
+.successAlert {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+
+.errorAlert {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
