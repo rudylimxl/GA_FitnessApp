@@ -1,5 +1,9 @@
 import { createNewUserDetail } from "../services/UserDetailService.js";
-import { createNewUser, getUser, getUsers } from "../services/UserService.js";
+import {
+  createNewUser,
+  getUserDetail,
+  getUserDetails,
+} from "../services/UserService.js";
 
 const create = async (req, res) => {
   try {
@@ -14,22 +18,22 @@ const create = async (req, res) => {
   }
 };
 
-const getUsersData = async (req, res) => {
+const index = async (req, res) => {
   try {
-    const users = await getUsers();
-    res.json(users);
+    const userDetails = await getUserDetails();
+    res.json(userDetails);
   } catch (err) {
     console.log(err);
   }
 };
 
-const getUserData = async (req, res) => {
+const show = async (req, res) => {
   try {
-    const user = await getUser(req.params.id);
-    res.json({ user });
+    const userDetail = await getUserDetail(req.params.id);
+    res.json(userDetail);
   } catch (err) {
     console.log(err);
   }
 };
 
-export { create, getUserData, getUsersData };
+export { create, index, show };

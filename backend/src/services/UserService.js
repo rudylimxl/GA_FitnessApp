@@ -1,4 +1,5 @@
 import User from "../models/User.js";
+import UserDetail from "../models/UserDetail.js";
 
 const createNewUser = async (user, userDetailId) => {
   try {
@@ -10,16 +11,16 @@ const createNewUser = async (user, userDetailId) => {
   }
 };
 
-const getUsers = async () => {
+const getUserDetails = async () => {
   try {
-    const users = await User.find({});
-    return users;
+    const userDetails = await UserDetail.find({});
+    return userDetails;
   } catch (err) {
     console.log(err);
   }
 };
 
-const getUser = async (id) => {
+const getUserDetail = async (id) => {
   try {
     const user = await User.findById(id).populate("userDetail");
     return user;
@@ -28,4 +29,4 @@ const getUser = async (id) => {
   }
 };
 
-export { createNewUser, getUser, getUsers };
+export { createNewUser, getUserDetails, getUserDetail };
