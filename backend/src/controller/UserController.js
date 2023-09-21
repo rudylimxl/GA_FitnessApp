@@ -1,4 +1,8 @@
-import { createNewUserDetail } from "../services/UserDetailService.js";
+import { uploadToCloudStorage } from "../services/FileService.js";
+import {
+  createNewUserDetail,
+  updateUserDetails,
+} from "../services/UserDetailService.js";
 import { createNewUser, getUsers, getUser } from "../services/UserService.js";
 
 const create = async (req, res) => {
@@ -32,4 +36,23 @@ const getUserData = async (req, res) => {
   }
 };
 
-export { create, getUsersData, getUserData };
+const update = async (req, res) => {
+  try {
+    if (req.file) {
+      //upload profile picture to GCP service if file exists
+      const url = await uploadToCloudStorage(req.file, "profile");
+
+      //modify req.body to add url
+      req.body.avatarUrl = url;
+    }
+
+    //update userdetails collection in userDetailService
+    await updateUserDetails(req.params.id, req.body);
+    res.status(200).send("Profile successfully updated.");
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error updating profile.");
+  }
+};
+
+export { create, getUsersData, getUserData, update };
