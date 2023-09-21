@@ -16,6 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(passport.initialize());
+
 //Routes
 app.use("/users", userRouter);
 app.use("/posts", postRouter);
