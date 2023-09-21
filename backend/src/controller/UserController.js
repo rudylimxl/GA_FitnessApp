@@ -1,10 +1,10 @@
-import { createNewUserDetail } from "../services/UserDetailService.js";
 import {
-  createNewUser,
+  createNewUserDetail,
   getTrainers,
   getUserDetail,
   getUserDetails,
-} from "../services/UserService.js";
+} from "../services/UserDetailService.js";
+import { createNewUser } from "../services/UserService.js";
 
 const create = async (req, res) => {
   try {
