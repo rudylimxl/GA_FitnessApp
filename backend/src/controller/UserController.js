@@ -1,5 +1,5 @@
 import { createNewUserDetail } from "../services/UserDetailService.js";
-import { createNewUser, getUsers, getUser } from "../services/UserService.js";
+import { createNewUser, getUser, getUsers } from "../services/UserService.js";
 
 const create = async (req, res) => {
   try {
@@ -17,7 +17,7 @@ const create = async (req, res) => {
 const getUsersData = async (req, res) => {
   try {
     const users = await getUsers();
-    res.json({ users });
+    res.json(users);
   } catch (err) {
     console.log(err);
   }
@@ -32,4 +32,4 @@ const getUserData = async (req, res) => {
   }
 };
 
-export { create, getUsersData, getUserData };
+export { create, getUserData, getUsersData };

@@ -28,4 +28,4 @@ const getUser = async (id) => {
   }
 };
 
-export { createNewUser, getUsers, getUser };
+export { createNewUser, getUser, getUsers };
