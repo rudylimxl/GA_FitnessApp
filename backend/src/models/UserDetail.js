@@ -16,6 +16,12 @@ const userDetailSchema = new mongoose.Schema({
     type: String,
     required: [true, "Select a user type"],
   },
+  bio: {
+    type: String,
+  },
+  avatarUrl: {
+    type: String,
+  },
 });
 
 const UserDetail = mongoose.model("UserDetail", userDetailSchema);
