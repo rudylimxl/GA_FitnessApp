@@ -103,9 +103,8 @@ const EditProfile = () => {
                 name="gender"
                 id="select-gender"
                 select
-                label="Gender"
+                label="Select your gender"
                 defaultValue="Male"
-                helperText="Select your gender"
                 size="small"
                 SelectProps={{
                   native: true,
