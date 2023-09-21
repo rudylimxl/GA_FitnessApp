@@ -1,10 +1,16 @@
 import express from "express";
-import { create, index, show } from "../controller/UserController.js";
+import {
+  create,
+  showAll,
+  showOne,
+  showTrainers,
+} from "../controller/UserController.js";
 
 const userRouter = express.Router();
 
+userRouter.get("/", showAll);
 userRouter.post("/signup", create);
-userRouter.get("/", index);
-userRouter.get("/:id", show);
+userRouter.get("/trainers", showTrainers);
+userRouter.get("/:id", showOne);
 
 export default userRouter;

@@ -1,6 +1,7 @@
 import { createNewUserDetail } from "../services/UserDetailService.js";
 import {
   createNewUser,
+  getTrainers,
   getUserDetail,
   getUserDetails,
 } from "../services/UserService.js";
@@ -18,7 +19,7 @@ const create = async (req, res) => {
   }
 };
 
-const index = async (req, res) => {
+const showAll = async (req, res) => {
   try {
     const userDetails = await getUserDetails();
     res.json(userDetails);
@@ -28,7 +29,7 @@ const index = async (req, res) => {
   }
 };
 
-const show = async (req, res) => {
+const showOne = async (req, res) => {
   try {
     const userDetail = await getUserDetail(req.params.id);
     res.json(userDetail);
@@ -38,4 +39,14 @@ const show = async (req, res) => {
   }
 };
 
-export { create, index, show };
+const showTrainers = async (req, res) => {
+  try {
+    const trainers = await getTrainers();
+    res.json(trainers);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("Unable to retrieve trainers");
+  }
+};
+
+export { create, showOne, showAll, showTrainers };

@@ -22,11 +22,20 @@ const getUserDetails = async () => {
 
 const getUserDetail = async (id) => {
   try {
-    const user = await User.findById(id).populate("userDetail");
+    const user = await UserDetail.findById(id);
     return user;
   } catch (err) {
     console.log(err);
   }
 };
 
-export { createNewUser, getUserDetails, getUserDetail };
+const getTrainers = async () => {
+  try {
+    const trainers = await UserDetail.find({ userType: "Trainer" });
+    console.log(trainers);
+    return trainers;
+  } catch (err) {
+    console.log(err);
+  }
+};
+export { createNewUser, getUserDetails, getUserDetail, getTrainers };
