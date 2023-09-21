@@ -32,7 +32,6 @@ const getUserDetail = async (id) => {
 const getTrainers = async () => {
   try {
     const trainers = await UserDetail.find({ userType: "Trainer" });
-    console.log(trainers);
     return trainers;
   } catch (err) {
     console.log(err);
