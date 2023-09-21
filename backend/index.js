@@ -2,10 +2,12 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import "dotenv/config";
 import express from "express";
+import connectToDatabase from "./src/config/mongoDB.js";
 import postRouter from "./src/routes/postRouter.js";
 import userRouter from "./src/routes/userRouter.js";
 
 const app = express();
+connectToDatabase();
 
 //Middleware
 app.use(bodyParser.json());
