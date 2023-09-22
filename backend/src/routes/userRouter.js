@@ -1,14 +1,22 @@
 import express from "express";
+import multer from "multer";
 import {
   create,
-  getUsersData,
-  getUserData,
+  showAll,
+  showOne,
+  showTrainers,
+  update,
 } from "../controller/UserController.js";
 
 const userRouter = express.Router();
+const upload = multer();
 
+userRouter.get("/", showAll);
 userRouter.post("/signup", create);
-userRouter.get("/users", getUsersData);
-userRouter.get("/user/:id", getUserData);
+userRouter.get("/trainers", showTrainers);
+userRouter.get("/:id", showOne);
+
+// Route to update user profile details
+userRouter.put("/:id", upload.single("files"), update);
 
 export default userRouter;

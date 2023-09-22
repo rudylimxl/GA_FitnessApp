@@ -21,7 +21,7 @@ import {
 
 async function create(req, res, next) {
   try {
-    const url = await uploadToCloudStorage(req);
+    const url = await uploadToCloudStorage(req.file, "posts");
     const postData = {
       ...req.body,
       url: url,
@@ -39,7 +39,6 @@ async function create(req, res, next) {
 
 async function index(req, res, next) {
   try {
-    //call service that will return all posts
     let allposts = await getAllPosts(req.body.userId);
     res.json(allposts);
   } catch (error) {
