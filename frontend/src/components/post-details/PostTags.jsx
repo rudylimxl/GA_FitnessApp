@@ -13,8 +13,10 @@ const PostTags = (props) => {
   const [chipData, setChipData] = useState([]);
 
   useEffect(() => {
+    // const tagSplit = props.tags.split(",");
+    console.log(props.tags);
     props.tags.map((e, index) => {
-      setChipData([...chipData, { key: index - 1, label: e }]);
+      setChipData([...chipData, { key: index, label: e }]);
     });
   }, []);
   return (

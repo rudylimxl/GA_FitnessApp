@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
-import ImagePostEditor from "./ImagePostEditor";
-import VideoPostEditor from "./VideoPostEditor";
+// import ImagePostEditor from "./ImagePostEditor";
+// import VideoPostEditor from "./VideoPostEditor";
 
 const PostEditor = () => {
   const { state } = useLocation();
