@@ -1,4 +1,5 @@
 import { Storage } from "@google-cloud/storage";
+import { v4 as uuidv4 } from "uuid";
 
 const storage = new Storage({
   projectId: "animated-subset-399202",
@@ -7,15 +8,18 @@ const storage = new Storage({
 
 const bucket = storage.bucket("bkr-fitapp");
 
-const uploadToCloudStorage = async (req) => {
+// Uploads a file to google cloud bucket
+const uploadToCloudStorage = async (reqFile, folderName) => {
+  const { mimetype, originalname, size } = reqFile;
+  // generate unique id for the name of the file
+  const fileName = uuidv4();
+
   try {
-    const { mimetype, originalname, size } = req.file;
-    const unixTime = Date.now();
-    //unixtime is to generate a unique filename
-    const file = bucket.file(unixTime);
+    const file = bucket.file(`${folderName}/${fileName}`);
     //bucket.file(unixTime) creates a new file with filename unixTime
-    await file.save(req.file.buffer, { contentType: mimetype });
+    await file.save(reqFile.buffer, { contentType: mimetype });
     //buffer is the actual file stored in temporary memory
+
     const url = `https://storage.googleapis.com/${bucket.name}/${file.name}`;
     console.log(`file uploaded to ${url}`);
     return url;
