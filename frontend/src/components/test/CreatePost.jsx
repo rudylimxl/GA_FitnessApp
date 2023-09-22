@@ -27,21 +27,31 @@ const CreatePost = ({ setSuccess, closeModal }) => {
   const onSubmit = (e) => {
     e.preventDefault();
 
+    const userId = "6505b4f0940b11b3fe8a55d9";
+
     let formData = new FormData();
     //FormData() creates a multipart/form-data request body type instead of JSON
     //This is necessary to facilitate file uploading
 
+    formData.append("user", userId);
     formData.append("title", titleRef.current.value);
     formData.append("description", descriptionRef.current.value);
     formData.append("tags", tagsRef.current.value);
 
     formData.append("files", files[0].file);
 
-    axios.post("http://localhost:8000/posts/", formData, {}).then((res) => {
-      console.log(res.data);
-      closeModal();
-      setSuccess(true);
-    });
+    axios
+      .post("http://localhost:8000/posts/", formData, {})
+      .then((res) => {
+        if (res.status === 201) {
+          console.log(res.data);
+          closeModal();
+          setSuccess(true);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
