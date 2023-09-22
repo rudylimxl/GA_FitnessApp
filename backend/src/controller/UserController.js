@@ -1,9 +1,11 @@
+
 import { uploadToCloudStorage } from "../services/FileService.js";
 import {
   createNewUserDetail,
   updateUserDetails,
 } from "../services/UserDetailService.js";
 import { createNewUser, getUsers, getUser } from "../services/UserService.js";
+
 
 const create = async (req, res) => {
   try {
@@ -21,7 +23,7 @@ const create = async (req, res) => {
 const getUsersData = async (req, res) => {
   try {
     const users = await getUsers();
-    res.json({ users });
+    res.json(users);
   } catch (err) {
     console.log(err);
   }
@@ -35,6 +37,7 @@ const getUserData = async (req, res) => {
     console.log(err);
   }
 };
+
 
 const update = async (req, res) => {
   try {
@@ -56,3 +59,4 @@ const update = async (req, res) => {
 };
 
 export { create, getUsersData, getUserData, update };
+
