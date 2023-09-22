@@ -1,0 +1,32 @@
+.grid {
+  /* border: 1px solid red; */
+  height: 250px;
+  width: 80%;
+  margin: 20px auto;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 0.8fr 3fr 1fr;
+}
+
+.profileInfo {
+  text-align: left;
+  padding: 10px;
+}
+
+.buttonGrp {
+  padding-top: 10px;
+}
+
+.buttonGrp > div {
+  margin: 5px 0;
+}
+
+table {
+  text-align: center;
+}
+
+td,
+th {
+  padding-left: 20px;
+  padding-right: 20px;
+}

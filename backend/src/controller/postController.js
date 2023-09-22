@@ -21,7 +21,7 @@ import {
 
 async function create(req, res, next) {
   try {
-    const url = await uploadToCloudStorage(req);
+    const url = await uploadToCloudStorage(req.file, "posts");
     const postData = {
       ...req.body,
       url: url,
