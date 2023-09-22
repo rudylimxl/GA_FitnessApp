@@ -2,30 +2,29 @@ import { Link } from "react-router-dom";
 import ImagePost from "./ImagePost";
 import VideoPost from "./VideoPost";
 
-const PostItems = (arr) => {
-  if (arr.posts.length > 0) {
-    return arr.posts.toReversed().map((e, index) => {
-      // console.log(e);
-
+const PostItems = (props) => {
+  if (props.posts === "") {
+    return <div>loading posts</div>;
+  } else {
+    return props.posts.toReversed().map((e, index) => {
       let renderPost = "";
-      if (e.type.includes("image")) {
+      if (e.contentType.includes("image")) {
         renderPost = <ImagePost prop={e} />;
       } else {
         renderPost = <VideoPost prop={e} />;
       }
-
       return (
-        <div className="post-item" key={index}>
-          <h3>Post:{e.name}</h3>
-          <Link to={`${e.name}`} state={e}>
-            <button>Comment on Post</button>
-          </Link>
-          {renderPost}
-        </div>
+        <Link to={`/post/${e._id}`} key={index} state={e}>
+          <div className="post-item-wrapper">
+            <div className="post-item-media">{renderPost}</div>
+            <div className="post-item-texts">
+              <h3>Title:{e.title}</h3>
+              <h5>Description:{e.description}</h5>
+            </div>
+          </div>
+        </Link>
       );
     });
-  } else {
-    return <div>loading posts</div>;
   }
 };
 

@@ -2,19 +2,21 @@ import Chip from "@mui/material/Chip";
 // import Stack from "@mui/material/Stack";
 import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const ListItem = styled("li")(({ theme }) => ({
   margin: theme.spacing(0.5),
 }));
 
-const PostTags = () => {
+const PostTags = (props) => {
   // eslint-disable-next-line no-unused-vars
-  const [chipData, setChipData] = useState([
-    { key: 0, label: "Legs" },
-    { key: 1, label: "Deadlift" },
-  ]);
+  const [chipData, setChipData] = useState([]);
 
+  useEffect(() => {
+    props.tags.map((e, index) => {
+      setChipData([...chipData, { key: index - 1, label: e }]);
+    });
+  }, []);
   return (
     // <Stack direction="row" spacing={1}>
     //   <Chip label="Tag 1" />

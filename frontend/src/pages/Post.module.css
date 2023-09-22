@@ -3,10 +3,16 @@
   grid-template-columns: 1fr 1.5fr;
   grid-template-rows: 500px 1fr;
   justify-content: center;
+  align-items: center;
+  column-gap: 15px;
 }
 
 .layout > video {
   margin: 0 auto;
+}
+
+.layout > img {
+  margin: 0 10px;
 }
 
 .comments {
