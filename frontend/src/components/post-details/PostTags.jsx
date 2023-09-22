@@ -14,9 +14,9 @@ const PostTags = (props) => {
 
   useEffect(() => {
     // const tagSplit = props.tags.split(",");
-    console.log(props.tags);
-    props.tags.map((e, index) => {
-      setChipData([...chipData, { key: index, label: e }]);
+    const splitTags = props.tags[0].split(",");
+    splitTags.map((e, index) => {
+      setChipData((prev) => [...prev, { key: index, label: e }]);
     });
   }, []);
   return (

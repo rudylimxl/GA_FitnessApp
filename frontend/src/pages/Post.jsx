@@ -29,13 +29,13 @@ const Post = () => {
     );
   } else {
     renderMedia = (
-      <div>
+      <div className={styles.media}>
         <video
           ref={videoPlayerRef}
           src={state.url}
           crossOrigin="anonymous"
-          width="80%"
-          height="80%"
+          width="90%"
+          height="90%"
           controls
         ></video>
         <FileRobot
