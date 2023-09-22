@@ -7,6 +7,7 @@ const ProfilePage = () => {
     <div>
       <Navbar />
       <Profile />
+      <div style={{ border: "1px solid grey" }}></div>
       <Outlet />
     </div>
   );

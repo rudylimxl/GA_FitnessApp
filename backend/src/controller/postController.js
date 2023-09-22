@@ -26,7 +26,6 @@ async function create(req, res, next) {
       ...req.body,
       url: url,
       userType: "user",
-      user: "6505b4f0940b11b3fe8a55d9",
     };
     // right now user type and userId is hardcoded
     await addPost(postData);

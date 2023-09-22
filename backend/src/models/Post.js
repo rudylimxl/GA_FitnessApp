@@ -5,6 +5,7 @@ const commentSchema = new mongoose.Schema({
   user: { type: mongoose.Schema.Types.ObjectId, ref: "UserDetail" },
   comment: { type: String, required: true },
   date: { type: Date, default: new Date() },
+  url: String,
 });
 
 // Posts collection

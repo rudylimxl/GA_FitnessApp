@@ -60,7 +60,7 @@ const EditProfile = () => {
 
     //Submit put request to backend server
     axios
-      .put(`http://localhost:8000/user/${userId}`, formData)
+      .put(`http://localhost:8000/users/${userId}`, formData)
       .then((res) => {
         //if successfull, close the modal
         if (res.status === 200) {
