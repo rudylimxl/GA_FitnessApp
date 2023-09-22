@@ -8,6 +8,7 @@ import EditProfile from "./EditProfile";
 import ProfileInfo from "./ProfileInfo";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import PostVideo from "./PostVideo";
 
 const Profile = () => {
   const [info, setInfo] = useState(null);
@@ -51,14 +52,7 @@ const Profile = () => {
           >
             Log workout
           </Button>
-          <Button
-            variant="contained"
-            size="small"
-            startIcon={<AddIcon />}
-            sx={{ width: "150px" }}
-          >
-            Post video
-          </Button>
+          <PostVideo />
         </div>
       </div>
     );

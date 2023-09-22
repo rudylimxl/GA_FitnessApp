@@ -17,7 +17,8 @@ registerPlugin(
   FilePondPluginImageExifOrientation
 );
 
-const CreatePost = () => {
+// eslint-disable-next-line react/prop-types
+const CreatePost = ({ setSuccess, closeModal }) => {
   const [files, setFiles] = useState("");
   const titleRef = useRef();
   const descriptionRef = useRef();
@@ -38,13 +39,14 @@ const CreatePost = () => {
 
     axios.post("http://localhost:8000/posts/", formData, {}).then((res) => {
       console.log(res.data);
-      alert("Post uploaded!");
+      closeModal();
+      setSuccess(true);
     });
   };
 
   return (
-    <div>
-      <h4>Create Posts</h4>
+    <div style={{ marginTop: "50px" }}>
+      <h1>Create a new post</h1>
       <form className="create-post" onSubmit={onSubmit}>
         <div className="input-wrapper">
           <input
