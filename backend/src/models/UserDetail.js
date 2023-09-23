@@ -1,7 +1,5 @@
 import mongoose from "mongoose";
 
-// TO EDIT
-
 const userDetailSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -15,6 +13,12 @@ const userDetailSchema = new mongoose.Schema({
   userType: {
     type: String,
     required: [true, "Select a user type"],
+  },
+  bio: {
+    type: String,
+  },
+  avatarUrl: {
+    type: String,
   },
 });
 

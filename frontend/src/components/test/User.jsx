@@ -5,10 +5,10 @@ const UserProfile = () => {
     <div>
       <h2>User Profile</h2>
       <div className="userButtons">
-        <Link to="/user/posts/">
+        <Link to="posts">
           <button>Posts</button>
         </Link>
-        <Link to="/user/posts/create">
+        <Link to="posts/create">
           <button>Create Post</button>
         </Link>
       </div>

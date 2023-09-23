@@ -21,12 +21,12 @@ import {
 
 async function create(req, res, next) {
   try {
-    const url = await uploadToCloudStorage(req);
+    const uploaded = await uploadToCloudStorage(req.file, "posts");
     const postData = {
       ...req.body,
-      url: url,
+      url: uploaded.url,
+      contentType: uploaded.contentType,
       userType: "user",
-      user: "6505b4f0940b11b3fe8a55d9",
     };
     // right now user type and userId is hardcoded
     await addPost(postData);
@@ -39,7 +39,10 @@ async function create(req, res, next) {
 
 async function index(req, res, next) {
   try {
-    let allposts = await getAllPosts(req.body.userId);
+    let allposts = await getAllPosts(req.query.userId);
+    //changed from req.body.userId to req.query.userId
+    //most HTTP services dont support request body in GET methods
+    //using query params instead, so /posts?userId=12345
     res.json(allposts);
   } catch (error) {
     console.error(error);
@@ -69,6 +72,13 @@ async function deletePost(req, res, next) {
 
 async function createComment(req, res, next) {
   try {
+    if (req.file) {
+      //upload image to GCP if there is a file received
+      const uploaded = await uploadToCloudStorage(req.file, "comments");
+      //modify req.body to add url
+      req.body.url = uploaded.url;
+    }
+
     await addNewComment(req.params.id, req.body);
     res.status(201).send("Comment added.");
   } catch (error) {

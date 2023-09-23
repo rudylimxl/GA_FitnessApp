@@ -75,3 +75,20 @@
 .post-title {
   width: 300px;
 }
+
+.post-item-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  border: 2px dashed gray;
+  background: rgb(223, 219, 219);
+  margin: 10px;
+  padding: 15px 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.post-editor-wrapper button {
+  display: block;
+  margin: 0 auto;
+}

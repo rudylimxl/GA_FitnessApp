@@ -1,0 +1,22 @@
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  grid-template-rows: 500px 1fr;
+  justify-content: center;
+  align-items: center;
+  column-gap: 15px;
+  row-gap: 15px;
+}
+
+.media {
+  grid-column: 1;
+  grid-row: 1 / 2;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.comments {
+  margin-top: 30px;
+  grid-column: 1 / -1;
+  grid-row: 2 / 3;
+}

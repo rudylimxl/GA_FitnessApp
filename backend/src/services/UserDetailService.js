@@ -10,4 +10,13 @@ const createNewUserDetail = async (userDetails) => {
   }
 };
 
-export { createNewUserDetail };
+// Update profile details of a specific user in DB
+const updateUserDetails = async (userId, profileDetails) => {
+  try {
+    await UserDetail.updateOne({ _id: userId }, profileDetails);
+  } catch (error) {
+    throw error;
+  }
+};
+
+export { createNewUserDetail, updateUserDetails };

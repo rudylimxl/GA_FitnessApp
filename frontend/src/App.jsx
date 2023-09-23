@@ -1,13 +1,13 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import "./App.css";
-import CreatePost from "./components/test/CreatePost.jsx";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Posts from "./components/test/Posts.jsx";
-import UserProfile from "./components/test/User.jsx";
-import Test from "./components/test/test.jsx";
+import "./App.css";
+import ProfilePage from "./pages/ProfilePage.jsx";
 import AppHome from "./pages/AppHome.jsx";
-import Login from "./pages/Login";
-import Profile from "./pages/Profile.jsx";
-import Register from "./pages/Register";
+import PostEditor from "./components/test/PostEditor.jsx";
+import Post from "./pages/Post.jsx";
+import Login from "./pages/Login.jsx";
+import Register from "./pages/Register.jsx";
+
 
 function App() {
   return (
@@ -17,13 +17,11 @@ function App() {
           <Route path="/app" element={<AppHome />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/user" element={<Profile />}>
-            <Route index element={<UserProfile />} />
-            <Route path="posts" element={<Posts />} />
-            <Route path="posts/create" element={<CreatePost />} />
+          <Route path="/user" element={<ProfilePage />}>
+            <Route index element={<Posts />} />
+            <Route path="posts/:id" element={<PostEditor />} />
           </Route>
-
-          <Route path="/trainer" element={<Test />} />
+          <Route path="/post/:id" element={<Post />} />
         </Routes>
       </BrowserRouter>
     </>

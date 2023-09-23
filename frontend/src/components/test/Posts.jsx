@@ -1,16 +1,31 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import PostImages from "./PostImages";
+import PostItems from "./PostItems";
 
 const Posts = () => {
-  let allPosts = [];
-  const [files, setFiles] = useState("");
+  const [posts, setPosts] = useState("");
+
+  // const getPostLists = () => {
+  //   axios.get("http://localhost:8000/posts/files").then((res) => {
+  //     allPosts = res.data.message;
+  //     setFiles(allPosts);
+  //   });
+  // };
 
   const getPostLists = () => {
-    axios.get("http://localhost:8000/posts/files").then((res) => {
-      allPosts = res.data.message;
-      setFiles(allPosts);
-    });
+    axios
+      .get("http://localhost:8000/posts", {
+        params: {
+          userId: "6505b4f0940b11b3fe8a55d9",
+        },
+      })
+      .then((res) => {
+        setPosts(res.data);
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   useEffect(() => {
@@ -20,7 +35,7 @@ const Posts = () => {
   return (
     <div>
       <h4>Posts</h4>
-      <PostImages posts={files}></PostImages>
+      <PostItems posts={posts}></PostItems>
     </div>
   );
 };
