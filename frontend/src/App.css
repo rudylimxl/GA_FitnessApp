@@ -92,3 +92,12 @@
   display: block;
   margin: 0 auto;
 }
+
+.post-comment-wrapper {
+  display: flex;
+}
+
+.post-comment-media {
+  height: 150px;
+  margin-right: 10px;
+}

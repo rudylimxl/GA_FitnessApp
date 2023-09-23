@@ -53,10 +53,12 @@ const FileRobot = (prop) => {
         <Box sx={styleModal}>
           <FilerobotImageEditor
             source={prop.url}
-            onSave={
-              (editedImageObject, designState) =>
-                prop.setEditedImage(editedImageObject)
-              //   console.log("saved", editedImageObject, designState)
+            onBeforeSave={(props) => {
+              return false;
+            }}
+            onSave={(editedImageObject, designState) =>
+              //   console.log("saved", editedImageObject, designState);
+              prop.setEditedImage(editedImageObject.imageBase64)
             }
             onClose={closeImgEditor}
             annotationsCommon={{

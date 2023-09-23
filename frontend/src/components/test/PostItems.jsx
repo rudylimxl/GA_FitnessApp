@@ -7,6 +7,7 @@ const PostItems = (props) => {
     return <div>loading posts</div>;
   } else {
     return props.posts.toReversed().map((e, index) => {
+      console.log(e);
       let renderPost = "";
       if (e.contentType.includes("image")) {
         renderPost = <ImagePost prop={e} />;

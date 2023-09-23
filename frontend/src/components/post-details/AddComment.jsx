@@ -20,14 +20,17 @@ const AddComment = (props) => {
         noValidate
         autoComplete="off"
       >
-        <TextField
-          id="outlined-multiline-flexible"
-          label="Comment"
-          multiline
-          rows={5}
-        />
+        <div className="post-comment-wrapper">
+          <img className="post-comment-media" src={props.editedImage}></img>
+          <TextField
+            id="outlined-multiline-flexible"
+            label="Comment"
+            multiline
+            rows={5}
+          />
+        </div>
       </Box>
-      <img src={props.editedImage}></img>
+
       <button>Post comment</button>
     </div>
   );
