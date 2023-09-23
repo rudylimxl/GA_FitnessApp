@@ -72,6 +72,13 @@ async function deletePost(req, res, next) {
 
 async function createComment(req, res, next) {
   try {
+    if (req.file) {
+      //upload image to GCP if there is a file received
+      const uploaded = await uploadToCloudStorage(req.file, "comments");
+      //modify req.body to add url
+      req.body.url = uploaded.url;
+    }
+
     await addNewComment(req.params.id, req.body);
     res.status(201).send("Comment added.");
   } catch (error) {
