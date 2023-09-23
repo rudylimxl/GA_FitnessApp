@@ -5,88 +5,74 @@ import ListItemText from "@mui/material/ListItemText";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 
-const Comments = () => {
+// eslint-disable-next-line react/prop-types
+const Comments = ({ postId }) => {
+  const [allComments, setAllComments] = useState(null);
+
+  useEffect(() => {
+    //get all comments for the specific post from database
+    const getAllComments = async () => {
+      const res = await axios.get(
+        `http://localhost:8000/posts/${postId}/comments`
+      );
+      setAllComments(res.data);
+    };
+
+    getAllComments();
+  }, []);
+
   return (
     <>
       <h2 style={{ textAlign: "left", marginLeft: "30px" }}>Comments</h2>
       <List
         sx={{ width: "80%", bgcolor: "background.paper", margin: "0 auto" }}
       >
-        <ListItem alignItems="flex-start">
-          <ListItemAvatar>
-            <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-          </ListItemAvatar>
-          <ListItemText
-            primary={
+        {allComments === null ? (
+          <Box sx={{ display: "flex", margin: "50px auto", width: "10%" }}>
+            <CircularProgress />
+          </Box>
+        ) : (
+          allComments.map((comment) => {
+            return (
               <>
-                <span>username123</span>
-                <Typography
-                  sx={{ display: "inline" }}
-                  component="span"
-                  variant="body2"
-                  color="text.primary"
-                  fontStyle="italic"
-                >
-                  {" — 19 Sep 2023"}
-                </Typography>
+                <ListItem alignItems="flex-start">
+                  <ListItemAvatar>
+                    <Avatar
+                      alt={comment.user.name}
+                      src={comment.user.avatarUrl}
+                    />
+                  </ListItemAvatar>
+                  <ListItemText
+                    primary={
+                      <>
+                        <span>username123</span>
+                        <Typography
+                          sx={{ display: "inline" }}
+                          component="span"
+                          variant="body2"
+                          color="text.primary"
+                          fontStyle="italic"
+                        >
+                          {` —  ${comment.date}`}
+                        </Typography>
+                      </>
+                    }
+                    secondary={comment.comment}
+                  />
+                </ListItem>
+                <Divider
+                  component="li"
+                  sx={{ borderBottomWidth: 2, backgroundColor: "black" }}
+                />
               </>
-            }
-            secondary="Insert comment here"
-          />
-        </ListItem>
-        <Divider
-          component="li"
-          sx={{ borderBottomWidth: 2, backgroundColor: "black" }}
-        />
-        <ListItem alignItems="flex-start">
-          <ListItemAvatar>
-            <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-          </ListItemAvatar>
-          <ListItemText
-            primary={
-              <>
-                <span>username123</span>
-                <Typography
-                  sx={{ display: "inline" }}
-                  component="span"
-                  variant="body2"
-                  color="text.primary"
-                  fontStyle="italic"
-                >
-                  {" — 19 Sep 2023"}
-                </Typography>
-              </>
-            }
-            secondary="Insert comment here"
-          />
-        </ListItem>
-        <Divider
-          component="li"
-          sx={{ borderBottomWidth: 2, backgroundColor: "black" }}
-        />
-        <ListItem alignItems="flex-start">
-          <ListItemAvatar>
-            <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-          </ListItemAvatar>
-          <ListItemText
-            primary={
-              <>
-                <span>username123</span>
-                <Typography
-                  sx={{ display: "inline" }}
-                  component="span"
-                  variant="body2"
-                  color="text.primary"
-                  fontStyle="italic"
-                >
-                  {" — 19 Sep 2023"}
-                </Typography>
-              </>
-            }
-            secondary="Insert comment here"
-          />
-        </ListItem>
+            );
+          })
+        )}
       </List>
     </>
   );

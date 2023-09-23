@@ -2,7 +2,7 @@ import Navbar from "../components/test/Navbar";
 import PostDetails from "../components/post-details/PostDetails";
 import styles from "./Post.module.css";
 import Comments from "../components/post-details/Comments";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { useState, useRef } from "react";
 import FileRobot from "../components/test/Filerobot";
 import { useScreenshot } from "use-react-screenshot";
@@ -10,6 +10,9 @@ import { useScreenshot } from "use-react-screenshot";
 const Post = () => {
   const { state } = useLocation();
   const [editedImage, setEditedImage] = useState("");
+  
+   //get id of current post from url
+  const postIdParams = useParams();
 
   //screenshot
   const videoPlayerRef = useRef(null);
@@ -64,7 +67,7 @@ const Post = () => {
           <PostDetails data={state} editedImage={editedImage} />
         </div>
         <div className={styles.comments}>
-          <Comments />
+          <Comments postId={postIdParams.id}/>
         </div>
       </div>
     </>

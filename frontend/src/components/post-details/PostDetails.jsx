@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import AddComment from "./AddComment";
 import PostDescription from "./PostDescription";
 import PostTags from "./PostTags";
