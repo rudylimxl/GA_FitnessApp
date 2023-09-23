@@ -9,6 +9,7 @@ import { useScreenshot } from "use-react-screenshot";
 
 const Post = () => {
   const { state } = useLocation();
+  const [editedImage, setEditedImage] = useState("");
 
   //screenshot
   const videoPlayerRef = useRef(null);
@@ -24,7 +25,12 @@ const Post = () => {
     renderMedia = (
       <div>
         <img src={state.url}></img>
-        <FileRobot url={state.url} type="image" buttonText="Edit Image" />
+        <FileRobot
+          url={state.url}
+          type="image"
+          buttonText="Edit Image"
+          setEditedImage={setEditedImage}
+        />
       </div>
     );
   } else {
@@ -43,6 +49,7 @@ const Post = () => {
           url={image}
           buttonText="Take Screenshot"
           type="video"
+          setEditedImage={setEditedImage}
         />
       </div>
     );
@@ -54,7 +61,7 @@ const Post = () => {
       <div className={styles.layout}>
         {renderMedia}
         <div>
-          <PostDetails data={state} />
+          <PostDetails data={state} editedImage={editedImage} />
         </div>
         <div className={styles.comments}>
           <Comments />

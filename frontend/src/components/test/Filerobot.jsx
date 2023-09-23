@@ -23,6 +23,7 @@ const styleModal = {
 };
 
 const FileRobot = (prop) => {
+  // Modal and passing image url to filerobot inside modal
   const [open, setOpen] = useState(false);
   const handleOpen = async () => {
     prop.type === "video" ? await prop.screenshot() : "";
@@ -37,7 +38,7 @@ const FileRobot = (prop) => {
   };
 
   const closeImgEditor = () => {
-    setIsImgEditorShown(false);
+    handleClose();
   };
 
   return (
@@ -52,8 +53,10 @@ const FileRobot = (prop) => {
         <Box sx={styleModal}>
           <FilerobotImageEditor
             source={prop.url}
-            onSave={(editedImageObject, designState) =>
-              console.log("saved", editedImageObject, designState)
+            onSave={
+              (editedImageObject, designState) =>
+                prop.setEditedImage(editedImageObject)
+              //   console.log("saved", editedImageObject, designState)
             }
             onClose={closeImgEditor}
             annotationsCommon={{

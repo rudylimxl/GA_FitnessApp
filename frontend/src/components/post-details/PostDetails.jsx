@@ -8,7 +8,7 @@ const PostDetails = (props) => {
       <h2>{props.data.title}</h2>
       <PostTags tags={props.data.tags} />
       <PostDescription desc={props.data.description} />
-      <AddComment />
+      <AddComment editedImage={props.editedImage} />
     </>
   );
 };
