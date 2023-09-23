@@ -41,6 +41,11 @@ const FileRobot = (prop) => {
     handleClose();
   };
 
+  const sendEditedImageToParent = (a) => {
+    prop.setEditedImage(a);
+    handleClose();
+  };
+
   return (
     <div>
       <button onClick={handleOpen}>{prop.buttonText}</button>
@@ -58,7 +63,8 @@ const FileRobot = (prop) => {
             }}
             onSave={(editedImageObject, designState) =>
               //   console.log("saved", editedImageObject, designState);
-              prop.setEditedImage(editedImageObject.imageBase64)
+              // prop.setEditedImage(editedImageObject.imageBase64)
+              sendEditedImageToParent(editedImageObject.imageBase64)
             }
             onClose={closeImgEditor}
             annotationsCommon={{
