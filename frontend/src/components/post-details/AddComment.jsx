@@ -2,7 +2,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import ToggleButtons from "./ToggleButtons";
 
-const AddComment = () => {
+const AddComment = (props) => {
   return (
     <div>
       <h4 style={{ textAlign: "left", marginBottom: "8px" }}>Add comment:</h4>
@@ -27,6 +27,7 @@ const AddComment = () => {
           rows={5}
         />
       </Box>
+      <img src={props.editedImage}></img>
       <button>Post comment</button>
     </div>
   );

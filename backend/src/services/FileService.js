@@ -22,7 +22,7 @@ const uploadToCloudStorage = async (reqFile, folderName) => {
 
     const url = `https://storage.googleapis.com/${bucket.name}/${file.name}`;
     console.log(`file uploaded to ${url}`);
-    return url;
+    return { url: url, contentType: mimetype };
   } catch (err) {
     console.log(err);
   }

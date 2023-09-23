@@ -21,10 +21,11 @@ import {
 
 async function create(req, res, next) {
   try {
-    const url = await uploadToCloudStorage(req.file, "posts");
+    const uploaded = await uploadToCloudStorage(req.file, "posts");
     const postData = {
       ...req.body,
-      url: url,
+      url: uploaded.url,
+      contentType: uploaded.contentType,
       userType: "user",
     };
     // right now user type and userId is hardcoded
@@ -38,7 +39,10 @@ async function create(req, res, next) {
 
 async function index(req, res, next) {
   try {
-    let allposts = await getAllPosts(req.body.userId);
+    let allposts = await getAllPosts(req.query.userId);
+    //changed from req.body.userId to req.query.userId
+    //most HTTP services dont support request body in GET methods
+    //using query params instead, so /posts?userId=12345
     res.json(allposts);
   } catch (error) {
     console.error(error);

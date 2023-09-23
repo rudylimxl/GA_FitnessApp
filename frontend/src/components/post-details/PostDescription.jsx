@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
 
-// eslint-disable-next-line react/prop-types
-const PostDescription = ({ description }) => {
+
+const PostDescription = (props) => {
   return (
     <div style={{ width: "100%", textAlign: "left" }}>
       <Box
@@ -22,7 +22,7 @@ const PostDescription = ({ description }) => {
           fontWeight: "600",
         }}
       >
-        {description}
+        {props.desc}
       </Box>
     </div>
   );

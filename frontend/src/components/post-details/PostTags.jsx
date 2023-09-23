@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import Chip from "@mui/material/Chip";
 import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
