@@ -1,3 +1,4 @@
+import passport from "passport";
 import {
   createNewUserDetail,
   getTrainers,
@@ -6,7 +7,7 @@ import {
 } from "../services/UserDetailService.js";
 import { createNewUser } from "../services/UserService.js";
 
-const create = async (req, res) => {
+const signup = async (req, res) => {
   try {
     // add a new user detail
     const id = await createNewUserDetail(req.body.userDetail);
@@ -48,4 +49,4 @@ const showTrainers = async (req, res) => {
   }
 };
 
-export { create, showOne, showAll, showTrainers };
+export { signup, showOne, showAll, showTrainers };
