@@ -1,5 +1,5 @@
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import { MenuItem, Select } from "@mui/material";
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -10,7 +10,8 @@ import Link from "@mui/material/Link";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 function Copyright(props) {
   return (
@@ -30,14 +31,60 @@ function Copyright(props) {
   );
 }
 
-// TODO remove, this demo shouldn't need to reset the theme.
+const TrainerListSelection = (props) => {
+  return (
+    <FormControl fullWidth>
+      <InputLabel id="selectTrainer">Select Trainer</InputLabel>
+      <Select
+        labelId="selectTrainer"
+        id="selectTrainer"
+        value={props.trainer}
+        variant="outlined"
+        label="selectTrainer"
+        onChange={props.handleTrainer}
+      >
+        {props.trainerList.map((el, index) => {
+          return (
+            <MenuItem key={index} value={el.name}>
+              {el.name}
+            </MenuItem>
+          );
+        })}
+      </Select>
+    </FormControl>
+  );
+};
+
+const DisableTrainerListSelection = (props) => {
+  return (
+    <FormControl disabled fullWidth>
+      <InputLabel id="selectTrainer">Select Trainer</InputLabel>
+      <Select
+        labelId="selectTrainer"
+        id="selectTrainer"
+        value={props.trainer}
+        variant="outlined"
+        label="selectTrainer"
+        onChange={props.handleTrainer}
+      >
+        {props.trainerList.map((el, index) => {
+          return (
+            <MenuItem key={index} value={el.name}>
+              {el.name}
+            </MenuItem>
+          );
+        })}
+      </Select>
+    </FormControl>
+  );
+};
 
 const defaultTheme = createTheme();
 
 export default function Register() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const data = new FormData(e.currentTarget);
     console.log({
       email: data.get("email"),
       password: data.get("password"),
@@ -45,10 +92,33 @@ export default function Register() {
   };
 
   const [gender, setGender] = useState("");
+  const [userType, setUserType] = useState("");
+  const [trainer, setTrainer] = useState("");
+  const [trainerList, setTrainerList] = useState([]);
 
-  const handleGender = () => {
-    setGender("Male");
+  const handleGender = (e) => {
+    setGender(e.target.value);
   };
+
+  const handleUserType = (e) => {
+    setUserType(() => e.target.value);
+  };
+
+  const handleTrainer = (e) => {
+    setTrainer(e.target.value);
+  };
+
+  useEffect(() => {
+    const getTrainerData = async () => {
+      try {
+        const res = await axios.get("http://localhost:8000/users/trainers");
+        setTrainerList(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getTrainerData();
+  }, []);
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -68,6 +138,7 @@ export default function Register() {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
+
           <Box
             component="form"
             noValidate
@@ -75,25 +146,23 @@ export default function Register() {
             sx={{ mt: 3 }}
           >
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12}>
                 <TextField
-                  autoComplete="given-name"
-                  name="firstName"
+                  name="name"
                   required
                   fullWidth
-                  id="firstName"
-                  label="First Name"
+                  id="name"
+                  label="Name"
                   autoFocus
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
-                  autoComplete="family-name"
+                  id="username"
+                  label="Username"
+                  name="username"
                 />
               </Grid>
               <Grid item xs={12}>
@@ -127,19 +196,51 @@ export default function Register() {
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
-                <TextField fullWidth name="gender" label="Gender" id="gender">
+                <FormControl fullWidth>
+                  <InputLabel id="gender">Gender</InputLabel>
                   <Select
-                    labelId="select-label"
-                    id="select"
+                    labelId="gender"
+                    id="gender"
                     value={gender}
                     variant="outlined"
-                    onChange={handleGender}
                     label="Gender"
+                    onChange={handleGender}
                   >
                     <MenuItem value="male">Male</MenuItem>
                     <MenuItem value="female">Female</MenuItem>
                   </Select>
-                </TextField>
+                </FormControl>
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <FormControl fullWidth>
+                  <InputLabel id="userType">User Type</InputLabel>
+                  <Select
+                    labelId="userType"
+                    id="userType"
+                    value={userType}
+                    variant="outlined"
+                    label="userType"
+                    onChange={handleUserType}
+                  >
+                    <MenuItem value="user">User</MenuItem>
+                    <MenuItem value="trainer">Trainer</MenuItem>
+                  </Select>
+                </FormControl>
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                {userType == "user" ? (
+                  <TrainerListSelection
+                    trainer={trainer}
+                    handleTrainer={handleTrainer}
+                    trainerList={trainerList}
+                  />
+                ) : (
+                  <DisableTrainerListSelection
+                    trainer={trainer}
+                    handleTrainer={handleTrainer}
+                    trainerList={trainerList}
+                  />
+                )}
               </Grid>
             </Grid>
             <Button
