@@ -11,6 +11,8 @@ import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import axios from "axios";
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 
 const Post = () => {
   const [editedImage, setEditedImage] = useState("");
@@ -92,11 +94,13 @@ const Post = () => {
         <div className={styles.layout}>
           {renderMedia}
           <div>
-            <PostDetails
-              alert={setSuccess}
-              data={post}
-              editedImage={editedImage}
-            />
+            {loaded && (
+              <PostDetails
+                alert={setSuccess}
+                data={post}
+                editedImage={editedImage}
+              />
+            )}
           </div>
 
           {/* alert on comment upload */}

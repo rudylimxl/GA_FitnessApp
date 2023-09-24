@@ -14,21 +14,14 @@ const PostItems = (props) => {
     return <div>loading posts</div>;
   } else {
     return props.posts.toReversed().map((e, index) => {
-      console.log(e);
-      let renderPost = "";
-      if (e.contentType.includes("image")) {
-        renderPost = <ImagePost prop={e} />;
-      } else {
-        renderPost = <VideoPost prop={e} />;
-      }
       return (
         <>
           <Link overlay href={`/post/${e._id}`}>
-            <Card sx={{ maxWidth: 345 }} key={index}>
+            <Card sx={{ maxWidth: 300 }} key={index}>
               <CardMedia
-                sx={{ height: 140 }}
-                image="/static/images/cards/contemplative-reptile.jpg"
-                title="green iguana"
+                component={e.contentType.includes("image") ? "img" : "video"}
+                image={e.url}
+                controls
               />
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
