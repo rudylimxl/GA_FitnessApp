@@ -2,22 +2,38 @@ import Navbar from "../components/test/Navbar";
 import PostDetails from "../components/post-details/PostDetails";
 import styles from "./Post.module.css";
 import Comments from "../components/post-details/Comments";
-import { useLocation, useParams } from "react-router-dom";
-import { useState, useRef } from "react";
+import { useParams } from "react-router-dom";
+import { useState, useRef, useEffect } from "react";
 import FileRobot from "../components/test/Filerobot";
 import { useScreenshot } from "use-react-screenshot";
 import Alert from "@mui/material/Alert";
 import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
+import axios from "axios";
 
 const Post = () => {
-  const { state } = useLocation();
   const [editedImage, setEditedImage] = useState("");
   const [success, setSuccess] = useState(false);
+  const [post, setPost] = useState();
+  const [loaded, setLoaded] = useState(false);
 
   //get id of current post from url
   const postIdParams = useParams();
+
+  //get post data
+  useEffect(() => {
+    const getPost = async () => {
+      const res = await axios.get(
+        `http://localhost:8000/posts/${postIdParams.id}`
+      );
+      setPost(res.data);
+      setLoaded(true);
+      console.log(res.data);
+    };
+
+    getPost();
+  }, []);
 
   //screenshot
   const videoPlayerRef = useRef(null);
@@ -29,24 +45,24 @@ const Post = () => {
   //
 
   let renderMedia = "";
-  if (state.contentType.includes("image")) {
+  if (loaded && post.contentType.includes("image")) {
     renderMedia = (
       <div>
-        <img src={state.url}></img>
+        <img src={post.url}></img>
         <FileRobot
-          url={state.url}
+          url={post.url}
           type="image"
           buttonText="Edit Image"
           setEditedImage={setEditedImage}
         />
       </div>
     );
-  } else {
+  } else if (loaded) {
     renderMedia = (
       <div className={styles.media}>
         <video
           ref={videoPlayerRef}
-          src={state.url}
+          src={post.url}
           crossOrigin="anonymous"
           width="90%"
           height="90%"
@@ -63,48 +79,55 @@ const Post = () => {
     );
   }
 
-  return (
-    <>
-      <Navbar />
-      <div className={styles.layout}>
-        {renderMedia}
-        <div>
-          <PostDetails
-            alert={setSuccess}
-            data={state}
-            editedImage={editedImage}
-          />
-        </div>
+  if (post === null) {
+    return (
+      <Box sx={{ display: "flex", margin: "50px auto", width: "10%" }}>
+        <CircularProgress />
+      </Box>
+    );
+  } else {
+    return (
+      <>
+        <Navbar />
+        <div className={styles.layout}>
+          {renderMedia}
+          <div>
+            <PostDetails
+              alert={setSuccess}
+              data={post}
+              editedImage={editedImage}
+            />
+          </div>
 
-        {/* alert on comment upload */}
-        <div className={styles.successAlert}>
-          <Collapse in={success}>
-            <Alert
-              action={
-                <IconButton
-                  aria-label="close"
-                  color="inherit"
-                  size="small"
-                  onClick={() => {
-                    setSuccess(false);
-                  }}
-                >
-                  <CloseIcon fontSize="inherit" />
-                </IconButton>
-              }
-              sx={{ mb: 2 }}
-            >
-              Comment succesfully created!
-            </Alert>
-          </Collapse>
-        </div>
+          {/* alert on comment upload */}
+          <div className={styles.successAlert}>
+            <Collapse in={success}>
+              <Alert
+                action={
+                  <IconButton
+                    aria-label="close"
+                    color="inherit"
+                    size="small"
+                    onClick={() => {
+                      setSuccess(false);
+                    }}
+                  >
+                    <CloseIcon fontSize="inherit" />
+                  </IconButton>
+                }
+                sx={{ mb: 2 }}
+              >
+                Comment succesfully created!
+              </Alert>
+            </Collapse>
+          </div>
 
-        <div className={styles.comments}>
-          <Comments postId={postIdParams.id} />
+          <div className={styles.comments}>
+            <Comments postId={postIdParams.id} />
+          </div>
         </div>
-      </div>
-    </>
-  );
+      </>
+    );
+  }
 };
-
 export default Post;

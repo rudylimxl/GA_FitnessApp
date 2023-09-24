@@ -1,6 +1,13 @@
-import { Link } from "react-router-dom";
+import Link from "@mui/material/Link";
 import ImagePost from "./ImagePost";
 import VideoPost from "./VideoPost";
+import * as React from "react";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 
 const PostItems = (props) => {
   if (props.posts === "") {
@@ -15,15 +22,25 @@ const PostItems = (props) => {
         renderPost = <VideoPost prop={e} />;
       }
       return (
-        <Link to={`/post/${e._id}`} key={index} state={e}>
-          <div className="post-item-wrapper">
-            <div className="post-item-media">{renderPost}</div>
-            <div className="post-item-texts">
-              <h3>Title:{e.title}</h3>
-              <h5>Description:{e.description}</h5>
-            </div>
-          </div>
-        </Link>
+        <>
+          <Link overlay href={`/post/${e._id}`}>
+            <Card sx={{ maxWidth: 345 }} key={index}>
+              <CardMedia
+                sx={{ height: 140 }}
+                image="/static/images/cards/contemplative-reptile.jpg"
+                title="green iguana"
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                  {e.title}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  {e.description}
+                </Typography>
+              </CardContent>
+            </Card>
+          </Link>
+        </>
       );
     });
   }

@@ -36,7 +36,9 @@ const Posts = () => {
   return (
     <div>
       <h4>Posts</h4>
-      <PostItems posts={posts}></PostItems>
+      <div className="posts-container">
+        <PostItems posts={posts}></PostItems>
+      </div>
     </div>
   );
 };

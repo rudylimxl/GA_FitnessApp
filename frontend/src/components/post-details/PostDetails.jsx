@@ -7,12 +7,12 @@ const PostDetails = (props) => {
   console.log(props);
   return (
     <>
-      <h2>{props.data.title}</h2>
-      <PostTags tags={props.data.tags} />
-      <PostDescription desc={props.data.description} />
+      <h2>{props.title}</h2>
+      {/* <PostTags tags={props.tags} /> */}
+      <PostDescription desc={props.description} />
       <AddComment
         alert={props.alert}
-        _id={props.data._id}
+        _id={props._id}
         editedImage={props.editedImage}
       />
     </>
