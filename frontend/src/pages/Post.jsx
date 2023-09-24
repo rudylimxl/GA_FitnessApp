@@ -6,10 +6,15 @@ import { useLocation, useParams } from "react-router-dom";
 import { useState, useRef } from "react";
 import FileRobot from "../components/test/Filerobot";
 import { useScreenshot } from "use-react-screenshot";
+import Alert from "@mui/material/Alert";
+import Collapse from "@mui/material/Collapse";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
 
 const Post = () => {
   const { state } = useLocation();
   const [editedImage, setEditedImage] = useState("");
+  const [success, setSuccess] = useState(false);
 
   //get id of current post from url
   const postIdParams = useParams();
@@ -64,8 +69,36 @@ const Post = () => {
       <div className={styles.layout}>
         {renderMedia}
         <div>
-          <PostDetails data={state} editedImage={editedImage} />
+          <PostDetails
+            alert={setSuccess}
+            data={state}
+            editedImage={editedImage}
+          />
         </div>
+
+        {/* alert on comment upload */}
+        <div className={styles.successAlert}>
+          <Collapse in={success}>
+            <Alert
+              action={
+                <IconButton
+                  aria-label="close"
+                  color="inherit"
+                  size="small"
+                  onClick={() => {
+                    setSuccess(false);
+                  }}
+                >
+                  <CloseIcon fontSize="inherit" />
+                </IconButton>
+              }
+              sx={{ mb: 2 }}
+            >
+              Comment succesfully created!
+            </Alert>
+          </Collapse>
+        </div>
+
         <div className={styles.comments}>
           <Comments postId={postIdParams.id} />
         </div>

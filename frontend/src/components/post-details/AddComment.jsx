@@ -39,7 +39,7 @@ const AddComment = (props) => {
           console.log(res.data);
           // closeModal();
           // setSuccess(true);
-          alert("comment created");
+          props.alert(true);
         }
       })
       .catch((error) => {

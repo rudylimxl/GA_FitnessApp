@@ -10,7 +10,11 @@ const PostDetails = (props) => {
       <h2>{props.data.title}</h2>
       <PostTags tags={props.data.tags} />
       <PostDescription desc={props.data.description} />
-      <AddComment _id={props.data._id} editedImage={props.editedImage} />
+      <AddComment
+        alert={props.alert}
+        _id={props.data._id}
+        editedImage={props.editedImage}
+      />
     </>
   );
 };
