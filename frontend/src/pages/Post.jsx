@@ -3,9 +3,8 @@ import PostDetails from "../components/post-details/PostDetails";
 import styles from "./Post.module.css";
 import Comments from "../components/post-details/Comments";
 import { useParams } from "react-router-dom";
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import FileRobot from "../components/test/Filerobot";
-import { useScreenshot } from "use-react-screenshot";
 import Alert from "@mui/material/Alert";
 import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
@@ -38,12 +37,20 @@ const Post = () => {
   }, []);
 
   //screenshot
-  const videoPlayerRef = useRef(null);
-  const [image, takeScreenshot] = useScreenshot({
-    type: "image/png",
-    quality: 1.0,
-  });
-  const getImage = () => takeScreenshot(videoPlayerRef.current);
+  const [image, setImage] = useState("");
+
+  const getImagebyDOM = () => {
+    let canvas = document.createElement("canvas");
+    let video = document.querySelector("#post-video-media");
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    let ctx = canvas.getContext("2d");
+    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+    let image = canvas.toDataURL("image/jpeg", 1.0);
+    console.log(image);
+    setImage(image);
+  };
+
   //
 
   let renderMedia = "";
@@ -63,7 +70,7 @@ const Post = () => {
     renderMedia = (
       <div className={styles.media}>
         <video
-          ref={videoPlayerRef}
+          id="post-video-media"
           src={post.url}
           crossOrigin="anonymous"
           width="90%"
@@ -71,7 +78,7 @@ const Post = () => {
           controls
         ></video>
         <FileRobot
-          screenshot={getImage}
+          screenshot={getImagebyDOM}
           url={image}
           buttonText="Take Screenshot"
           type="video"
@@ -91,6 +98,7 @@ const Post = () => {
     return (
       <>
         <Navbar />
+        <button onClick={getImagebyDOM}>click</button>
         <div className={styles.layout}>
           {renderMedia}
           <div>
