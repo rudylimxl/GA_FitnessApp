@@ -8,6 +8,8 @@ import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
 import { useState, useRef } from "react";
 import axios from "axios";
 import "../../App.css";
+import { TextField, Button, Typography } from "@mui/material";
+import SendIcon from "@mui/icons-material/Send";
 
 //FilePond is the component to browse/preview files before upload
 
@@ -56,30 +58,24 @@ const CreatePost = ({ setSuccess, closeModal }) => {
 
   return (
     <div style={{ marginTop: "50px" }}>
-      <h1>Create a new post</h1>
+      <Typography variant="h4">Create a new post</Typography>
       <form className="create-post" onSubmit={onSubmit}>
         <div className="input-wrapper">
-          <input
-            type="text"
-            name="postTitle"
-            placeholder="Post Title"
-            className="post-title"
-            ref={titleRef}
-          ></input>
-          <input
-            type="text"
-            name="postDescription"
-            placeholder="Post Description"
-            className="post-description"
-            ref={descriptionRef}
-          ></input>
-          <input
-            type="text"
-            name="postTags"
-            placeholder="Post Tags, separated by comma"
-            className="post-tags"
-            ref={tagsRef}
-          ></input>
+          <TextField
+            label="Post Title"
+            inputRef={titleRef}
+            autoComplete="off"
+          />
+          <TextField
+            label="Post Description"
+            inputRef={descriptionRef}
+            autoComplete="off"
+          />
+          <TextField
+            label="Post Tags, separated by comma"
+            inputRef={tagsRef}
+            autoComplete="off"
+          />
           <div className="filepond-wrapper">
             <FilePond
               files={files}
@@ -92,9 +88,9 @@ const CreatePost = ({ setSuccess, closeModal }) => {
           </div>
         </div>
         <div className="form-group">
-          <button className="btn" type="submit">
-            Select file above, then click here to Upload
-          </button>
+          <Button type="submit" variant="contained" endIcon={<SendIcon />}>
+            Create Post
+          </Button>
         </div>
       </form>
     </div>
