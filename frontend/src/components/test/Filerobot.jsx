@@ -62,7 +62,7 @@ const FileRobot = (prop) => {
               return false;
             }}
             onSave={(editedImageObject, designState) =>
-              //   console.log("saved", editedImageObject, designState);
+              // console.log("saved", editedImageObject, designState)
               // prop.setEditedImage(editedImageObject.imageBase64)
               sendEditedImageToParent(editedImageObject.imageBase64)
             }

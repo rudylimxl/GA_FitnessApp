@@ -4,6 +4,7 @@ import PostItems from "./PostItems";
 
 const Posts = () => {
   const [posts, setPosts] = useState("");
+  const [success, setSuccess] = useState(false);
 
   // const getPostLists = () => {
   //   axios.get("http://localhost:8000/posts/files").then((res) => {

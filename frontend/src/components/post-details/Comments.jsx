@@ -64,6 +64,7 @@ const Comments = ({ postId }) => {
                     }
                     secondary={comment.comment}
                   />
+                  <img src={comment.url} height="150px"></img>
                 </ListItem>
                 <Divider
                   component="li"

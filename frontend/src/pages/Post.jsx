@@ -10,8 +10,8 @@ import { useScreenshot } from "use-react-screenshot";
 const Post = () => {
   const { state } = useLocation();
   const [editedImage, setEditedImage] = useState("");
-  
-   //get id of current post from url
+
+  //get id of current post from url
   const postIdParams = useParams();
 
   //screenshot
@@ -67,7 +67,7 @@ const Post = () => {
           <PostDetails data={state} editedImage={editedImage} />
         </div>
         <div className={styles.comments}>
-          <Comments postId={postIdParams.id}/>
+          <Comments postId={postIdParams.id} />
         </div>
       </div>
     </>

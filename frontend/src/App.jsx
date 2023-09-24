@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Posts from "./components/test/Posts.jsx";
+import Posts from "./components/test/Posts";
 import "./App.css";
 import ProfilePage from "./pages/ProfilePage.jsx";
 import AppHome from "./pages/AppHome.jsx";
