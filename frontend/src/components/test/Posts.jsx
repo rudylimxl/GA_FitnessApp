@@ -4,6 +4,7 @@ import PostItems from "./PostItems";
 
 const Posts = () => {
   const [posts, setPosts] = useState("");
+  const [success, setSuccess] = useState(false);
 
   // const getPostLists = () => {
   //   axios.get("http://localhost:8000/posts/files").then((res) => {
@@ -35,7 +36,9 @@ const Posts = () => {
   return (
     <div>
       <h4>Posts</h4>
-      <PostItems posts={posts}></PostItems>
+      <div className="posts-container">
+        <PostItems posts={posts}></PostItems>
+      </div>
     </div>
   );
 };

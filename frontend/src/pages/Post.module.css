@@ -20,3 +20,10 @@
   grid-column: 1 / -1;
   grid-row: 2 / 3;
 }
+
+.successAlert {
+  position: absolute;
+  top: 90vh;
+  left: 10px;
+  z-index: 9999;
+}
