@@ -7,6 +7,7 @@ const userDetailSchema = new mongoose.Schema({
   username: {
     type: String,
     required: [true, "Your username is required"],
+    unique: true,
   },
   age: {
     type: Number,

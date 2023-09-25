@@ -19,6 +19,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/users", userRouter);
 app.use("/posts", postRouter);
 
+app.use((err, req, res, next) => {
+  err.statusCode = err.statusCode || 500;
+  res.status(err.statusCode).json({
+    status: err.statusCode,
+    message: err.message,
+  });
+});
+
 app.listen(process.env.PORT, () => {
   console.log(`Server running on ${process.env.PORT}`);
 });
