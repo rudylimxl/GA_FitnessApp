@@ -12,6 +12,7 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Copyright(props) {
   return (
@@ -37,15 +38,15 @@ const TrainerListSelection = (props) => {
       <InputLabel id="selectTrainer">Select Trainer</InputLabel>
       <Select
         labelId="selectTrainer"
-        id="selectTrainer"
+        id="trainer"
         value={props.trainer}
         variant="outlined"
         label="selectTrainer"
         onChange={props.handleTrainer}
       >
-        {props.trainerList.map((el, index) => {
+        {props.trainerList.map((el) => {
           return (
-            <MenuItem key={index} value={el.name}>
+            <MenuItem key={el._id} value={el._id}>
               {el.name}
             </MenuItem>
           );
@@ -61,20 +62,12 @@ const DisableTrainerListSelection = (props) => {
       <InputLabel id="selectTrainer">Select Trainer</InputLabel>
       <Select
         labelId="selectTrainer"
-        id="selectTrainer"
+        id="trainer"
         value={props.trainer}
         variant="outlined"
         label="selectTrainer"
         onChange={props.handleTrainer}
-      >
-        {props.trainerList.map((el, index) => {
-          return (
-            <MenuItem key={index} value={el.name}>
-              {el.name}
-            </MenuItem>
-          );
-        })}
-      </Select>
+      ></Select>
     </FormControl>
   );
 };
@@ -82,13 +75,31 @@ const DisableTrainerListSelection = (props) => {
 const defaultTheme = createTheme();
 
 export default function Register() {
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
-    console.log({
+    let newUser = {
       email: data.get("email"),
       password: data.get("password"),
-    });
+      userDetail: {
+        name: data.get("name"),
+        username: data.get("username"),
+        age: data.get("age"),
+        gender: gender,
+        userType: userType,
+      },
+    };
+    if (userType === "user") {
+      newUser.trainerId = trainer;
+    }
+    try {
+      axios.post("http://localhost:8000/users/signup", newUser);
+      navigate("/login");
+    } catch (error) {
+      console.error(error);
+      window.alert(error);
+    }
   };
 
   const [gender, setGender] = useState("");
@@ -101,7 +112,7 @@ export default function Register() {
   };
 
   const handleUserType = (e) => {
-    setUserType(() => e.target.value);
+    setUserType(e.target.value);
   };
 
   const handleTrainer = (e) => {
@@ -230,13 +241,13 @@ export default function Register() {
               <Grid item xs={12} sm={6}>
                 {userType == "user" ? (
                   <TrainerListSelection
-                    trainer={trainer}
+                    trainer={trainer.name}
                     handleTrainer={handleTrainer}
                     trainerList={trainerList}
                   />
                 ) : (
                   <DisableTrainerListSelection
-                    trainer={trainer}
+                    trainer={trainer.name}
                     handleTrainer={handleTrainer}
                     trainerList={trainerList}
                   />
