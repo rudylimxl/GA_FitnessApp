@@ -10,13 +10,15 @@ import {
   getUserDetail,
   getUserDetails,
 } from "../services/UserService.js";
+import { createNewTrainerToUser } from "../services/trainerToUserService.js";
 
 const create = async (req, res, next) => {
   try {
     // add a new user detail
-    const id = await createNewUserDetail(req.body.userDetail);
+    const userDetailId = await createNewUserDetail(req.body.userDetail);
     // add a new user referencing the user detail
-    await createNewUser(req.body, id);
+    await createNewUser(req.body, userDetailId);
+    await createNewTrainerToUser(userDetailId, req.body.trainerId);
     res.status(201).send("User created sucessfully");
   } catch (error) {
     next(error);

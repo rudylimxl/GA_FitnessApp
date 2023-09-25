@@ -6,6 +6,7 @@ const createNewUser = async (user, userDetailId) => {
   const newUser = new User(user);
   newUser.userDetail = userDetailId;
   await newUser.save();
+  return newUser.id;
 };
 
 const getUserDetails = async () => {
