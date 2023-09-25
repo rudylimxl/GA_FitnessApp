@@ -4,6 +4,11 @@ const userDetailSchema = new mongoose.Schema({
   name: {
     type: String,
   },
+  username: {
+    type: String,
+    required: [true, "Your username is required"],
+    unique: true,
+  },
   age: {
     type: Number,
   },
@@ -13,6 +18,12 @@ const userDetailSchema = new mongoose.Schema({
   userType: {
     type: String,
     required: [true, "Select a user type"],
+  },
+  bio: {
+    type: String,
+  },
+  avatarUrl: {
+    type: String,
   },
 });
 

@@ -1,41 +1,48 @@
-import passport from "passport";
+import NotFoundError from "../errors/NotFoundError.js";
+import { uploadToCloudStorage } from "../services/FileService.js";
+import {
+  createNewUserDetail,
+  updateUserDetails,
+} from "../services/UserDetailService.js";
 import {
   createNewUserDetail,
   getTrainers,
   getUserDetail,
   getUserDetails,
-} from "../services/UserDetailService.js";
-import { createNewUser } from "../services/UserService.js";
+} from "../services/UserService.js";
+import { createNewTrainerToUser } from "../services/trainerToUserService.js";
 
-const signup = async (req, res) => {
+const create = async (req, res, next) => {
   try {
     // add a new user detail
-    const id = await createNewUserDetail(req.body.userDetail);
+    const userDetailId = await createNewUserDetail(req.body.userDetail);
     // add a new user referencing the user detail
-    await createNewUser(req.body, id);
+    await createNewUser(req.body, userDetailId);
+    await createNewTrainerToUser(userDetailId, req.body.trainerId);
     res.status(201).send("User created sucessfully");
   } catch (error) {
-    res.status(500).send("Error in creating user");
+    next(error);
   }
 };
 
-const showAll = async (req, res) => {
+const showAll = async (req, res, next) => {
   try {
     const userDetails = await getUserDetails();
     res.json(userDetails);
-  } catch (err) {
-    console.log(err);
-    res.status(500).send("Unable to retrieve user details");
+  } catch (error) {
+    next(error);
   }
 };
 
-const showOne = async (req, res) => {
+const showOne = async (req, res, next) => {
   try {
     const userDetail = await getUserDetail(req.params.id);
+    if (!userDetail) {
+      throw NotFoundError();
+    }
     res.json(userDetail);
-  } catch (err) {
-    console.log(err);
-    res.status(500).send("Unable to retrieve user details");
+  } catch (error) {
+    next(error);
   }
 };
 
@@ -43,10 +50,29 @@ const showTrainers = async (req, res) => {
   try {
     const trainers = await getTrainers();
     res.json(trainers);
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
+    console.log(error);
     res.status(500).send("Unable to retrieve trainers");
   }
 };
 
-export { signup, showOne, showAll, showTrainers };
+const update = async (req, res) => {
+  try {
+    if (req.file) {
+      //upload profile picture to GCP service if file exists
+      const url = await uploadToCloudStorage(req.file, "profile");
+
+      //modify req.body to add url
+      req.body.avatarUrl = url;
+    }
+
+    //update userdetails collection in userDetailService
+    await updateUserDetails(req.params.id, req.body);
+    res.status(200).send("Profile successfully updated.");
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error updating profile.");
+  }
+};
+
+export { create, showOne, showAll, showTrainers, update };

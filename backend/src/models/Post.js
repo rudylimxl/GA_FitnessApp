@@ -5,6 +5,7 @@ const commentSchema = new mongoose.Schema({
   user: { type: mongoose.Schema.Types.ObjectId, ref: "UserDetail" },
   comment: { type: String, required: true },
   date: { type: Date, default: new Date() },
+  url: String,
 });
 
 // Posts collection
@@ -16,6 +17,7 @@ const postSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  contentType: { type: String },
   date: { type: Date, default: new Date() },
   userType: { type: String, enum: ["user", "trainer"], required: true },
   user: { type: mongoose.Schema.Types.ObjectId, ref: "UserDetail" },

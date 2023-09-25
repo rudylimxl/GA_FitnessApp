@@ -29,6 +29,10 @@ postRouter.delete("/:id", postController.deletePost);
 postRouter.get("/:id/comments", postController.indexComment);
 
 // Route to create a comment for a specific post
-postRouter.post("/:id/comments", postController.createComment);
+postRouter.post(
+  "/:id/comments",
+  upload.single("files"),
+  postController.createComment
+);
 
 export default postRouter;

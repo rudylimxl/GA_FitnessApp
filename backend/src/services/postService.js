@@ -57,6 +57,8 @@ async function getAllComments(id) {
       path: "comments",
       populate: { path: "user" },
     });
+
+    //returns an array of all comments as objects
     return post.comments;
   } catch (error) {
     throw error;
