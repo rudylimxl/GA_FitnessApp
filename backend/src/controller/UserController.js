@@ -5,7 +5,7 @@ import {
   updateUserDetails,
 } from "../services/UserDetailService.js";
 import {
-  createNewUser,
+  createNewUserDetail,
   getTrainers,
   getUserDetail,
   getUserDetails,
