@@ -12,7 +12,7 @@ import {
 } from "../services/UserService.js";
 import { createNewTrainerToUser } from "../services/trainerToUserService.js";
 
-const create = async (req, res, next) => {
+const signup = async (req, res, next) => {
   try {
     // add a new user detail
     const userDetailId = await createNewUserDetail(req.body.userDetail);
@@ -75,4 +75,4 @@ const update = async (req, res) => {
   }
 };
 
-export { create, showOne, showAll, showTrainers, update };
+export { signup, showOne, showAll, showTrainers, update };
