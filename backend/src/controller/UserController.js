@@ -11,6 +11,7 @@ import {
 import { createNewUser } from "../services/UserService.js";
 
 import { createNewTrainerToUser } from "../services/trainerToUserService.js";
+import InvalidUserOrPasswordError from "../errors/InvalidUserOrPasswordError.js";
 
 const signup = async (req, res, next) => {
   try {
@@ -75,17 +76,14 @@ const update = async (req, res) => {
 
 const login = (req, res, next) => {
   passport.authenticate("local", (err, user, info) => {
-    if (err) {
-      next(err);
-    }
     if (!user) {
-      next(new Error(info.message));
+      next(InvalidUserOrPasswordError());
     } else {
       req.logIn(user, (err) => {
         if (err) {
           next(err);
         }
-        res.send("Login Sucessful");
+        res.send(user);
       });
     }
   })(req, res, next);
