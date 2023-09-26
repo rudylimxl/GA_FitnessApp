@@ -21,6 +21,7 @@ function App() {
             <Route index element={<Posts />} />
             <Route path="posts/:id" element={<PostEditor />} />
           </Route>
+
           <Route path="/post/:id" element={<Post />} />
           <Route path="search/:input" element={<SearchResult />} />
         </Routes>

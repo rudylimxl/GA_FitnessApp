@@ -46,28 +46,30 @@ const SearchResult = () => {
               </Badge>
               {response.users.map((user) => (
                 <>
-                  <ListItem alignItems="flex-start">
-                    <ListItemAvatar>
-                      <Avatar alt={user.username} src={user.avatarUrl} />
-                    </ListItemAvatar>
-                    <ListItemText
-                      primary={
-                        <>
-                          <span>{user.username}</span>
-                          <Typography
-                            sx={{ display: "inline" }}
-                            component="span"
-                            variant="body2"
-                            color="text.primary"
-                            fontStyle="italic"
-                          >
-                            {` —  ${user.userType}`}
-                          </Typography>
-                        </>
-                      }
-                      secondary={user.name}
-                    />
-                  </ListItem>
+                  <Link overlay href={`/user/${user._id}`}>
+                    <ListItem alignItems="flex-start">
+                      <ListItemAvatar>
+                        <Avatar alt={user.username} src={user.avatarUrl} />
+                      </ListItemAvatar>
+                      <ListItemText
+                        primary={
+                          <>
+                            <span>{user.username}</span>
+                            <Typography
+                              sx={{ display: "inline" }}
+                              component="span"
+                              variant="body2"
+                              color="text.primary"
+                              fontStyle="italic"
+                            >
+                              {` —  ${user.userType}`}
+                            </Typography>
+                          </>
+                        }
+                        secondary={user.name}
+                      />
+                    </ListItem>
+                  </Link>
                   <Divider
                     component="li"
                     sx={{ borderBottomWidth: 2, backgroundColor: "black" }}
