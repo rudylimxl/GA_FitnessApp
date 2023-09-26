@@ -1,3 +1,4 @@
+import passport from "passport";
 import NotFoundError from "../errors/NotFoundError.js";
 import { uploadToCloudStorage } from "../services/FileService.js";
 import {
@@ -50,7 +51,6 @@ const showTrainers = async (req, res) => {
     const trainers = await getTrainers();
     res.json(trainers);
   } catch (error) {
-    console.log(error);
     res.status(500).send("Unable to retrieve trainers");
   }
 };
@@ -69,9 +69,26 @@ const update = async (req, res) => {
     await updateUserDetails(req.params.id, req.body);
     res.status(200).send("Profile successfully updated.");
   } catch (error) {
-    console.error(error);
     res.status(500).send("Error updating profile.");
   }
 };
 
-export { signup, showOne, showAll, showTrainers, update };
+const login = (req, res, next) => {
+  passport.authenticate("local", (err, user, info) => {
+    if (err) {
+      next(err);
+    }
+    if (!user) {
+      next(new Error(info.message));
+    } else {
+      req.logIn(user, (err) => {
+        if (err) {
+          next(err);
+        }
+        res.send("Login Sucessful");
+      });
+    }
+  })(req, res, next);
+};
+
+export { signup, showOne, showAll, showTrainers, update, login };

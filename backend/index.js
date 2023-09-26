@@ -7,12 +7,23 @@ import postRouter from "./src/routes/postRouter.js";
 import userRouter from "./src/routes/userRouter.js";
 import passport from "passport";
 import session from "express-session";
-import { Strategy } from "passport-local";
-import User from "./src/models/User.js";
-import bcrypt from "bcrypt";
+import initializePassport from "./src/config/passport-config.js";
 
 const app = express();
 connectToDatabase();
+initializePassport(passport);
+
+const checkAuthenticated = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+};
+
+const checkNotAuthenticated = (req, res, next) => {
+  if (req.isAuthenticated()) {
+  }
+  next();
+};
 
 //Middleware
 app.use(bodyParser.json());
@@ -30,41 +41,6 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
-
-passport.use(
-  new Strategy(async (email, password, done) => {
-    try {
-      const user = await User.findOne({ email: email });
-      if (!user) {
-        return done(null, false, { message: "Incorrect username" });
-      }
-      bcrypt.compare(password, user.password, (err, res) => {
-        if (res) {
-          // passwords match! log user in
-          return done(null, user);
-        } else {
-          // passwords do not match!
-          return done(null, false, { message: "Incorrect password" });
-        }
-      });
-    } catch (err) {
-      return done(err);
-    }
-  })
-);
-
-passport.serializeUser((user, done) => {
-  done(null, user._id);
-});
-
-passport.deserializeUser(async (id, done) => {
-  try {
-    const user = await User.findById(id);
-    done(null, user);
-  } catch (err) {
-    done(err);
-  }
-});
 
 //Routes
 app.use("/users", userRouter);
