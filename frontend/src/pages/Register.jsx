@@ -108,7 +108,6 @@ export default function Register() {
       }
     } catch (error) {
       console.error(error);
-      window.alert(error.message);
     }
   };
 

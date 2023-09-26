@@ -12,6 +12,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Copyright(props) {
   return (
@@ -36,19 +37,22 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function Login() {
+  const navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault();
+
     const data = new FormData(event.currentTarget);
-    console.log(data.get("email"), data.get("password"));
     try {
       const res = await axios.post("http://localhost:8000/login", {
         email: data.get("email"),
         password: data.get("password"),
       });
-
-      console.log(res);
+      if (res.status === 200) {
+        sessionStorage.setItem("userdetail", res.data.userDetail);
+        navigate("/app");
+      }
     } catch (error) {
-      console.error(error);
+      window.alert(error.response.data.message);
     }
   };
 
