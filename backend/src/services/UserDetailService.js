@@ -1,17 +1,13 @@
 import UserDetail from "../models/UserDetail.js";
 
 const createNewUserDetail = async (userDetails) => {
-  try {
-    const newUserDetail = new UserDetail(userDetails);
-    await newUserDetail.save();
-    return newUserDetail.id;
-  } catch (err) {
-    console.log(err);
-  }
+  const newUserDetail = new UserDetail(userDetails);
+  await newUserDetail.save();
+  return newUserDetail.id;
 };
 
 // Update profile details of a specific user in DB
-const updateUserDetails = async (userId, profileDetails) => {
+const updateUserDetails = async (userId, profileDetails, next) => {
   try {
     await UserDetail.updateOne({ _id: userId }, profileDetails);
   } catch (error) {

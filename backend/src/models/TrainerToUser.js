@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 // TO EDIT
 
 const trainerToUserSchema = new mongoose.Schema({
-  userId: {
+  userDetailId: {
     type: String,
   },
   trainerId: {
