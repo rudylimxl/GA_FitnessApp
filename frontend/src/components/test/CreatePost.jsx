@@ -29,13 +29,13 @@ const CreatePost = ({ setSuccess, closeModal }) => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    const userId = "6505b4f0940b11b3fe8a55d9";
+    const userDetailId = sessionStorage.getItem("userdetail");
 
     let formData = new FormData();
     //FormData() creates a multipart/form-data request body type instead of JSON
     //This is necessary to facilitate file uploading
 
-    formData.append("user", userId);
+    formData.append("user", userDetailId);
     formData.append("title", titleRef.current.value);
     formData.append("description", descriptionRef.current.value);
     formData.append("tags", tagsRef.current.value);

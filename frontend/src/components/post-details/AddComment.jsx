@@ -6,7 +6,7 @@ import axios from "axios";
 
 const AddComment = (props) => {
   const commentRef = useRef();
-  const userDetailId = "6502f3d51da1f697ef88187c";
+  const userDetailId = sessionStorage.getItem("userdetail");
 
   const submitComment = () => {
     function dataURItoBlob(dataURI) {

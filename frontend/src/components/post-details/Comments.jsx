@@ -24,7 +24,7 @@ const Comments = ({ postId }) => {
     };
 
     getAllComments();
-  }, []);
+  }, [allComments]);
 
   return (
     <>
