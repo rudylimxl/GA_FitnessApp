@@ -23,18 +23,4 @@ const createNewUser = async (user, userDetailId) => {
   });
 };
 
-const getUserDetails = async () => {
-  const userDetails = await UserDetail.find({});
-  return userDetails;
-};
-
-const getUserDetail = async (id) => {
-  const user = await UserDetail.findById(id);
-  return user;
-};
-
-const getTrainers = async () => {
-  const trainers = await UserDetail.find({ userType: "Trainer" });
-  return trainers;
-};
-export { createNewUser, getUserDetails, getUserDetail, getTrainers };
+export { createNewUser };

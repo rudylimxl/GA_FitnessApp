@@ -7,7 +7,7 @@ import PostEditor from "./components/test/PostEditor.jsx";
 import Post from "./pages/Post.jsx";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
-
+import SearchResult from "./components/SearchResult";
 
 function App() {
   return (
@@ -22,6 +22,7 @@ function App() {
             <Route path="posts/:id" element={<PostEditor />} />
           </Route>
           <Route path="/post/:id" element={<Post />} />
+          <Route path="search/:input" element={<SearchResult />} />
         </Routes>
       </BrowserRouter>
     </>

@@ -1,5 +1,20 @@
 import UserDetail from "../models/UserDetail.js";
 
+const getUserDetails = async () => {
+  const userDetails = await UserDetail.find({});
+  return userDetails;
+};
+
+const getUserDetail = async (id) => {
+  const user = await UserDetail.findById(id);
+  return user;
+};
+
+const getTrainers = async () => {
+  const trainers = await UserDetail.find({ userType: "Trainer" });
+  return trainers;
+};
+
 const createNewUserDetail = async (userDetails) => {
   const newUserDetail = new UserDetail(userDetails);
   await newUserDetail.save();
@@ -25,4 +40,11 @@ async function searchUsername(inputStr) {
   }
 }
 
-export { createNewUserDetail, updateUserDetails, searchUsername };
+export {
+  createNewUserDetail,
+  updateUserDetails,
+  searchUsername,
+  getUserDetails,
+  getUserDetail,
+  getTrainers,
+};
