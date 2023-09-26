@@ -67,7 +67,15 @@ const DisableTrainerListSelection = (props) => {
         variant="outlined"
         label="selectTrainer"
         onChange={props.handleTrainer}
-      ></Select>
+      >
+        {props.trainerList.map((el) => {
+          return (
+            <MenuItem key={el._id} value={el._id}>
+              {el.name}
+            </MenuItem>
+          );
+        })}
+      </Select>
     </FormControl>
   );
 };
@@ -94,11 +102,13 @@ export default function Register() {
       newUser.trainerId = trainer;
     }
     try {
-      axios.post("http://localhost:8000/users/signup", newUser);
-      navigate("/login");
+      const res = await axios.post("http://localhost:8000/signup", newUser);
+      if (res.status === 201) {
+        navigate("/login");
+      }
     } catch (error) {
       console.error(error);
-      window.alert(error);
+      window.alert(error.message);
     }
   };
 
@@ -125,7 +135,7 @@ export default function Register() {
         const res = await axios.get("http://localhost:8000/users/trainers");
         setTrainerList(res.data);
       } catch (err) {
-        console.log(err);
+        console.error(err);
       }
     };
     getTrainerData();

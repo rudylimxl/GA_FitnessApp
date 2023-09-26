@@ -11,6 +11,7 @@ import Link from "@mui/material/Link";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
+import axios from "axios";
 
 function Copyright(props) {
   return (
@@ -35,13 +36,20 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function Login() {
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+    console.log(data.get("email"), data.get("password"));
+    try {
+      const res = await axios.post("http://localhost:8000/login", {
+        email: data.get("email"),
+        password: data.get("password"),
+      });
+
+      console.log(res);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
