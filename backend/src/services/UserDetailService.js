@@ -30,9 +30,25 @@ const updateUserDetails = async (userId, profileDetails, next) => {
   }
 };
 
+// Get all users from DB where a username matches the input string
+async function searchUsername(inputStr) {
+  try {
+    // let users = await UserDetail.find({
+    //   $text: { $search: `\"${inputStr}\"` },
+    // });
+    let users = await UserDetail.find({
+      username: { $regex: new RegExp(inputStr, "i") },
+    });
+    return users;
+  } catch (error) {
+    throw error;
+  }
+}
+
 export {
   createNewUserDetail,
   updateUserDetails,
+  searchUsername,
   getUserDetails,
   getUserDetail,
   getTrainers,

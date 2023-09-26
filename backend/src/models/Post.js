@@ -24,6 +24,11 @@ const postSchema = new mongoose.Schema({
   comments: [commentSchema],
 });
 
+postSchema.index({
+  title: "text",
+  tags: "text",
+});
+
 const Posts = mongoose.model("Post", postSchema);
 
 export default Posts;

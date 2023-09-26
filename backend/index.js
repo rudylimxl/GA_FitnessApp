@@ -5,6 +5,7 @@ import express from "express";
 import connectToDatabase from "./src/config/mongoDB.js";
 import postRouter from "./src/routes/postRouter.js";
 import userRouter from "./src/routes/userRouter.js";
+import searchRouter from "./src/routes/searchRouter.js";
 import passport from "passport";
 import session from "express-session";
 import initializePassport from "./src/config/passport-config.js";
@@ -44,6 +45,7 @@ app.use("/", authRouter);
 // app.use("/posts", checkAuthenticated);
 app.use("/users", userRouter);
 app.use("/posts", postRouter);
+app.use("/search", searchRouter);
 
 app.use((err, req, res, next) => {
   err.statusCode = err.statusCode || 500;
