@@ -3,13 +3,12 @@ import { uploadToCloudStorage } from "../services/FileService.js";
 import {
   createNewUserDetail,
   updateUserDetails,
-} from "../services/UserDetailService.js";
-import {
-  createNewUserDetail,
   getTrainers,
   getUserDetail,
   getUserDetails,
-} from "../services/UserService.js";
+} from "../services/UserDetailService.js";
+import { createNewUser } from "../services/UserService.js";
+
 import { createNewTrainerToUser } from "../services/trainerToUserService.js";
 
 const signup = async (req, res, next) => {
