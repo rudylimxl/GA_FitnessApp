@@ -50,6 +50,7 @@ const SearchBar = () => {
     },
   }));
 
+  //navigates to search result page when the search request is submitted
   const handleSubmit = (e) => {
     e.preventDefault();
 
