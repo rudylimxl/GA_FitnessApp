@@ -19,4 +19,14 @@ const updateUserDetails = async (userId, profileDetails) => {
   }
 };
 
-export { createNewUserDetail, updateUserDetails };
+// Get all users from DB where a username matches the input string
+async function searchUsername(inputStr) {
+  try {
+    let users = await UserDetail.find({ $text: { $search: inputStr } });
+    return users;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export { createNewUserDetail, updateUserDetails, searchUsername };

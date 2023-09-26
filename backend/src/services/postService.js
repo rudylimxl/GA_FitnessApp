@@ -65,6 +65,19 @@ async function getAllComments(id) {
   }
 }
 
+// Get all posts from DB where a post title/tag matches the input string
+async function searchPost(inputStr) {
+  try {
+    let posts = await Posts.find({ $text: { $search: inputStr } })
+      .select("-comments")
+      .populate("user");
+
+    return posts;
+  } catch (error) {
+    throw error;
+  }
+}
+
 export {
   addPost,
   getAllPosts,
@@ -72,4 +85,5 @@ export {
   deleteOnePost,
   addNewComment,
   getAllComments,
+  searchPost,
 };
