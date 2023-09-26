@@ -14,10 +14,12 @@ const Posts = () => {
   // };
 
   const getPostLists = () => {
+    const userDetailId = sessionStorage.getItem("userdetail");
+    console.log(userDetailId);
     axios
       .get("http://localhost:8000/posts", {
         params: {
-          userId: "6505b4f0940b11b3fe8a55d9",
+          userId: userDetailId,
         },
       })
       .then((res) => {

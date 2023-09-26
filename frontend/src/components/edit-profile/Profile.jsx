@@ -12,18 +12,18 @@ import PostVideo from "./PostVideo";
 
 const Profile = () => {
   const [info, setInfo] = useState(null);
-
+  const userDetailId = sessionStorage.getItem("userdetail");
   useEffect(() => {
-    const userId = "6505b4f0940b11b3fe8a55d7";
-
     //Gets profile info from database
     const getInfo = async () => {
-      const res = await axios.get(`http://localhost:8000/users/${userId}`);
+      const res = await axios.get(
+        `http://localhost:8000/users/${userDetailId}`
+      );
       setInfo(res.data);
     };
 
     getInfo();
-  }, []);
+  }, [info]);
 
   if (info === null) {
     return (

@@ -8,19 +8,15 @@ import userRouter from "./src/routes/userRouter.js";
 import passport from "passport";
 import session from "express-session";
 import initializePassport from "./src/config/passport-config.js";
+import authRouter from "./src/routes/authRouter.js";
 
 const app = express();
 connectToDatabase();
 initializePassport(passport);
 
 const checkAuthenticated = (req, res, next) => {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-};
-
-const checkNotAuthenticated = (req, res, next) => {
-  if (req.isAuthenticated()) {
+  if (!req.isAuthenticated()) {
+    res.status(401).send("Please login first");
   }
   next();
 };
@@ -43,6 +39,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //Routes
+app.use("/", authRouter);
+// app.use("/users", checkAuthenticated);
+// app.use("/posts", checkAuthenticated);
 app.use("/users", userRouter);
 app.use("/posts", postRouter);
 
