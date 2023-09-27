@@ -20,8 +20,7 @@ import SearchBar from "../Searchbar";
 //(rudy) edit the href target for navbar links here
 const pages = [
   { display: "Home", href: "/app" },
-  { display: "User", href: "/user" },
-  { display: "Trainer", href: "/trainer" },
+  { display: "Profile", href: "/profile" },
   { display: "Notification", href: "/notifications" },
 ];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];

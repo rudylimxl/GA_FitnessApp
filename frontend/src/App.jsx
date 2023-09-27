@@ -9,7 +9,6 @@ import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import SearchResult from "./components/SearchResult";
 
-
 function App() {
   return (
     <>
@@ -18,7 +17,7 @@ function App() {
           <Route path="/app" element={<AppHome />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/user" element={<ProfilePage />}>
+          <Route path="/profile" element={<ProfilePage />}>
             <Route index element={<Posts />} />
             <Route path="posts/:id" element={<PostEditor />} />
           </Route>

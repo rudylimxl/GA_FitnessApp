@@ -2,7 +2,7 @@
 const ProfileInfo = ({ info }) => {
   return (
     <>
-      <h3 style={{ marginTop: 0 }}>Username</h3>
+      <h3 style={{ marginTop: 0 }}>{info.username}</h3>
       <p>{info.name}</p>
       <p>
         <em>{info.bio}</em>
