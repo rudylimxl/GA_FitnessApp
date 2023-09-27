@@ -23,7 +23,7 @@ const pages = [
   { display: "Profile", href: "/profile" },
   { display: "Notification", href: "/notifications" },
 ];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const settings = ["Account", "Dashboard", "Logout"];
 
 function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
