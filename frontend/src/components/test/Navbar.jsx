@@ -20,11 +20,10 @@ import SearchBar from "../Searchbar";
 //(rudy) edit the href target for navbar links here
 const pages = [
   { display: "Home", href: "/app" },
-  { display: "User", href: "/user" },
-  { display: "Trainer", href: "/trainer" },
+  { display: "Profile", href: "/profile" },
   { display: "Notification", href: "/notifications" },
 ];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const settings = ["Account", "Dashboard", "Logout"];
 
 function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);

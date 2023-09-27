@@ -60,10 +60,10 @@ const update = async (req, res) => {
   try {
     if (req.file) {
       //upload profile picture to GCP service if file exists
-      const url = await uploadToCloudStorage(req.file, "profile");
+      const returnedData = await uploadToCloudStorage(req.file, "profile");
 
       //modify req.body to add url
-      req.body.avatarUrl = url;
+      req.body.avatarUrl = returnedData.url;
     }
 
     //update userdetails collection in userDetailService

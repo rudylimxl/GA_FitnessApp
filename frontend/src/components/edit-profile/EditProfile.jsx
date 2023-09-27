@@ -56,11 +56,11 @@ const EditProfile = () => {
       formData.append("files", profilePic[0].file);
     }
 
-    const userId = "6505b4f0940b11b3fe8a55d7";
+    const userDetailId = sessionStorage.getItem("userdetail");
 
     //Submit put request to backend server
     axios
-      .put(`http://localhost:8000/users/${userId}`, formData)
+      .put(`http://localhost:8000/users/${userDetailId}`, formData)
       .then((res) => {
         //if successfull, close the modal
         if (res.status === 200) {
@@ -108,12 +108,17 @@ const EditProfile = () => {
           </div>
           <div className={styles.containerRight}>
             <h3>Profile details</h3>
-            <form className={styles.formData} onChange={handleChange}>
+            <form
+              className={styles.formData}
+              onChange={handleChange}
+              id="editProfile"
+            >
               <TextField
                 name="name"
                 label="Name"
                 variant="outlined"
                 size="small"
+                autoComplete="off"
               />
               <TextField
                 name="age"
@@ -140,6 +145,7 @@ const EditProfile = () => {
                 </option>
               </TextField>
               <TextField
+                id="biography"
                 name="bio"
                 label="Biography"
                 variant="outlined"

@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import PostItems from "./PostItems";
 
-const Posts = () => {
+const Posts = ({ userId }) => {
   const [posts, setPosts] = useState("");
   const [success, setSuccess] = useState(false);
 
@@ -14,12 +14,10 @@ const Posts = () => {
   // };
 
   const getPostLists = () => {
-    const userDetailId = sessionStorage.getItem("userdetail");
-    console.log(userDetailId);
     axios
       .get("http://localhost:8000/posts", {
         params: {
-          userId: userDetailId,
+          userId: userId,
         },
       })
       .then((res) => {
