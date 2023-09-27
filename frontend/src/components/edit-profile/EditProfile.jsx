@@ -108,12 +108,17 @@ const EditProfile = () => {
           </div>
           <div className={styles.containerRight}>
             <h3>Profile details</h3>
-            <form className={styles.formData} onChange={handleChange}>
+            <form
+              className={styles.formData}
+              onChange={handleChange}
+              id="editProfile"
+            >
               <TextField
                 name="name"
                 label="Name"
                 variant="outlined"
                 size="small"
+                autoComplete="off"
               />
               <TextField
                 name="age"
@@ -140,6 +145,7 @@ const EditProfile = () => {
                 </option>
               </TextField>
               <TextField
+                id="biography"
                 name="bio"
                 label="Biography"
                 variant="outlined"

@@ -63,8 +63,9 @@ const SearchBar = () => {
       <SearchIconWrapper>
         <SearchIcon />
       </SearchIconWrapper>
-      <form onSubmit={handleSubmit}>
+      <form id="search" onSubmit={handleSubmit}>
         <StyledInputBase
+          name="search"
           placeholder="Search…"
           inputProps={{ "aria-label": "search" }}
           inputRef={searchRef}

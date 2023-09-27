@@ -1,28 +1,15 @@
+/* eslint-disable react/prop-types */
 import Avatar from "@mui/material/Avatar";
 import styles from "./Profile.module.css";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import ProfileInfo from "./ProfileInfo";
-import { useEffect, useState } from "react";
-import axios from "axios";
 import ProfileBtnGroup from "./ProfileBtnGroup";
 import Button from "@mui/material/Button";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { teal, purple } from "@mui/material/colors";
 
-const Profile = ({ userId, userType }) => {
-  const [info, setInfo] = useState(null);
-
-  useEffect(() => {
-    //Gets profile info from database
-    const getInfo = async () => {
-      const res = await axios.get(`http://localhost:8000/users/${userId}`);
-      setInfo(res.data);
-    };
-
-    getInfo();
-  }, [info]);
-
+const Profile = ({ info, profile }) => {
   const theme = createTheme({
     palette: {
       primary: teal,
@@ -48,9 +35,9 @@ const Profile = ({ userId, userType }) => {
           <ProfileInfo info={info} />
         </div>
         <div className={styles.buttonGrp}>
-          {userType === "main" ? (
+          {profile === "main" ? (
             <ProfileBtnGroup />
-          ) : userType === "user" ? (
+          ) : info.userType === "user" ? (
             <ThemeProvider theme={theme}>
               <Button variant="contained" color="primary">
                 User

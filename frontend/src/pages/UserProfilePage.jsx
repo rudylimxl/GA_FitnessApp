@@ -2,18 +2,30 @@ import Navbar from "../components/test/Navbar";
 import { Outlet, useParams } from "react-router-dom";
 import Profile from "../components/edit-profile/Profile";
 import ProfileTabs from "../components/edit-profile/ProfileTabs";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 const UserProfilePage = () => {
+  const [info, setInfo] = useState({ _id: "" });
+
   const { id } = useParams();
 
-  //TODO: get user type and store in a variable, pass as props to ProfileTabs and to Profile
+  useEffect(() => {
+    //Gets profile info from database
+    const getInfo = async () => {
+      const res = await axios.get(`http://localhost:8000/users/${id}`);
+      setInfo(res.data);
+    };
+
+    getInfo();
+  }, []);
 
   return (
     <div>
       <Navbar />
-      <Profile userId={id} />
+      <Profile info={info} profile="others" />
       <div style={{ border: "1px solid grey", marginBottom: "20px" }}></div>
-      <ProfileTabs usertype={"trainer"} />
+      <ProfileTabs userId={id} userType={info.userType} />
       <Outlet />
     </div>
   );

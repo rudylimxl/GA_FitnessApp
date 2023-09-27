@@ -1,27 +1,38 @@
-import Button from "@mui/material/Button";
-import Stack from "@mui/material/Stack";
-import { Link } from "react-router-dom";
+/* eslint-disable react/prop-types */
+import { useState } from "react";
+import Box from "@mui/material/Box";
+import Tab from "@mui/material/Tab";
+import TabContext from "@mui/lab/TabContext";
+import TabList from "@mui/lab/TabList";
+import TabPanel from "@mui/lab/TabPanel";
+import Posts from "../test/Posts";
 
-const ProfileTabs = ({ usertype }) => {
+const ProfileTabs = ({ userId, userType }) => {
+  const [value, setValue] = useState("1");
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
   return (
-    <Stack direction="row" spacing={2}>
-      <Link to="stats">
-        <Button variant="contained">Stats</Button>
-      </Link>
-      <Link to="videos">
-        <Button variant="contained">Videos</Button>
-      </Link>
-      <Link to="workouts">
-        <Button variant="contained">Workouts</Button>
-      </Link>
-      {usertype === "trainer" ? (
-        <Link to="clients">
-          <Button variant="contained">Clients</Button>
-        </Link>
-      ) : (
-        <></>
-      )}
-    </Stack>
+    <Box sx={{ width: "100%", typography: "body1" }}>
+      <TabContext value={value}>
+        <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+          <TabList onChange={handleChange} aria-label="lab API tabs example">
+            <Tab label="Status" value="1" />
+            <Tab label="Videos" value="2" />
+            <Tab label="Workouts" value="3" />
+            {userType === "trainer" ? <Tab label="Clients" value="4" /> : null}
+          </TabList>
+        </Box>
+        <TabPanel value="1">Status</TabPanel>
+        <TabPanel value="2">
+          <Posts userId={userId} />
+        </TabPanel>
+        <TabPanel value="3">Workouts</TabPanel>
+        {userType === "trainer" ? <TabPanel value="4">Clients</TabPanel> : null}
+      </TabContext>
+    </Box>
   );
 };
 
