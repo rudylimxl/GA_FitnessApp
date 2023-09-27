@@ -8,9 +8,6 @@ import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import SearchResult from "./components/SearchResult";
 import PostEditor from "./components/test/PostEditor.jsx";
-// import Test from "./components/test/test.jsx";
-// import PostsWrapper from "./components/test/PostsWrapper";
-// import PostsWrapperProfile from "./components/test/PostsWrapperProfile";
 
 function App() {
   return (

@@ -50,7 +50,7 @@ const Comments = ({ postId }) => {
                   <ListItemText
                     primary={
                       <>
-                        <span>username123</span>
+                        <span>{comment.user.username}</span>
                         <Typography
                           sx={{ display: "inline" }}
                           component="span"
