@@ -25,10 +25,6 @@ const userDetailSchema = new mongoose.Schema({
   avatarUrl: {
     type: String,
   },
-  username: {
-    type: String,
-    required: [true, "Your username is required"],
-  },
 });
 
 userDetailSchema.index({
