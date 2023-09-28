@@ -1,5 +1,6 @@
 import Posts from "../models/Post.js";
 import UserDetail from "../models/UserDetail.js";
+import mongoose from "mongoose";
 
 // Add a new post to DB
 async function addPost(postDetails) {
@@ -14,6 +15,46 @@ async function addPost(postDetails) {
 async function getAllPosts(userId) {
   try {
     let allPosts = await Posts.find({ user: userId });
+    return allPosts;
+  } catch (error) {
+    throw error;
+  }
+}
+
+// Get all posts for a specific user with unread comments from DB
+async function getAllPostsUnread(userId) {
+  const pipeline = [
+    {
+      //Select posts for the specific userId
+      $match: {
+        user: new mongoose.Types.ObjectId(userId),
+      },
+    },
+    {
+      //Filter out comments where isRead is false
+      $addFields: {
+        comments: {
+          $filter: {
+            input: "$comments",
+            cond: {
+              $eq: ["$$this.isRead", false],
+            },
+          },
+        },
+      },
+    },
+    {
+      // specify which fields you want to return
+      $project: {
+        _id: 1,
+        title: 1,
+        comments: 1,
+      },
+    },
+  ];
+
+  try {
+    let allPosts = await Posts.aggregate(pipeline).exec();
     return allPosts;
   } catch (error) {
     throw error;
@@ -65,6 +106,21 @@ async function getAllComments(id) {
   }
 }
 
+// Finds the specific comment and update isRead field to be true
+async function updateComment(postId, commentId) {
+  Posts.findById(postId)
+    .then((post) => {
+      //return a matching comment
+      const comment = post.comments.id(commentId);
+      //update isRead field
+      comment.set({ isRead: true });
+      return post.save();
+    })
+    .catch((error) => {
+      throw error;
+    });
+}
+
 // Get all posts from DB where a post title/tag matches the input string
 async function searchPost(inputStr) {
   try {
@@ -89,9 +145,11 @@ async function searchPost(inputStr) {
 export {
   addPost,
   getAllPosts,
+  getAllPostsUnread,
   getOnePost,
   deleteOnePost,
   addNewComment,
   getAllComments,
   searchPost,
+  updateComment,
 };

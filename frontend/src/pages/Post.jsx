@@ -57,7 +57,7 @@ const Post = () => {
   if (loaded && post.contentType.includes("image")) {
     renderMedia = (
       <div>
-        <img src={post.url}></img>
+        <img src={post.url} width="50%" height="50%"></img>
         <FileRobot
           url={post.url}
           type="image"

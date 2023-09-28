@@ -2,10 +2,12 @@ import { uploadToCloudStorage } from "../services/FileService.js";
 import {
   addPost,
   getAllPosts,
+  getAllPostsUnread,
   getOnePost,
   deleteOnePost,
   addNewComment,
   getAllComments,
+  updateComment,
 } from "../services/postService.js";
 
 // async function create(req, res, next) {
@@ -47,6 +49,25 @@ async function index(req, res, next) {
   } catch (error) {
     console.error(error);
     res.status(500).send("Unable to retrieve posts.");
+  }
+}
+async function indexUnread(req, res, next) {
+  try {
+    let allposts = await getAllPostsUnread(req.query.userId);
+    res.json(allposts);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Unable to retrieve posts.");
+  }
+}
+
+async function update(req, res, next) {
+  try {
+    await updateComment(req.params.id, req.query.id);
+    res.send("Comment updated");
+  } catch (error) {
+    console.error(error);
+    res.send("Unable to update comment");
   }
 }
 
@@ -97,4 +118,13 @@ async function indexComment(req, res, next) {
   }
 }
 
-export { create, index, show, deletePost, createComment, indexComment };
+export {
+  create,
+  index,
+  indexUnread,
+  show,
+  deletePost,
+  createComment,
+  indexComment,
+  update,
+};

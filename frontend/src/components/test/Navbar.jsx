@@ -16,16 +16,16 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import SearchBar from "../Searchbar";
+import Notifications from "./Notifications";
 import { useNavigate } from "react-router-dom";
 
 //(rudy) edit the href target for navbar links here
 const pages = [
   { display: "Home", href: "/app" },
   { display: "Profile", href: "/profile" },
-  { display: "Notification", href: "/notifications" },
 ];
 
-const settings = ["Account", "Dashboard", "Logout"];
+// const settings = ["Account", "Dashboard", "Logout"];
 
 function Navbar({ loggedIn }) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -150,6 +150,7 @@ function Navbar({ loggedIn }) {
           {loggedIn ? (
             <Box sx={{ display: "flex" }}>
               <SearchBar />
+              <Notifications />
               <Box sx={{ flexGrow: 0, marginLeft: "10px" }}>
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
