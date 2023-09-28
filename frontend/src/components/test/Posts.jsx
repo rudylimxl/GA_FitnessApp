@@ -4,6 +4,7 @@ import PostItems from "./PostItems";
 
 const Posts = ({ userId }) => {
   const [posts, setPosts] = useState("");
+  const [loading, setLoading] = useState(true);
   const [success, setSuccess] = useState(false);
 
   // const getPostLists = () => {
@@ -22,6 +23,7 @@ const Posts = ({ userId }) => {
       })
       .then((res) => {
         setPosts(res.data);
+        setLoading(false);
         console.log(res);
       })
       .catch((err) => {
@@ -37,7 +39,7 @@ const Posts = ({ userId }) => {
     <div>
       <h4>Posts</h4>
       <div className="posts-container">
-        <PostItems posts={posts}></PostItems>
+        <PostItems posts={posts} loading={loading}></PostItems>
       </div>
     </div>
   );

@@ -10,8 +10,8 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
 const PostItems = (props) => {
-  if (props.posts === "") {
-    return <div>loading posts</div>;
+  if (props.loading) {
+    return <div>loading posts...</div>;
   } else {
     return props.posts.toReversed().map((e, index) => {
       return (
