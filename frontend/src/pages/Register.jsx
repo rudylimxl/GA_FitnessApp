@@ -133,6 +133,7 @@ export default function Register() {
       try {
         const res = await axios.get("http://localhost:8000/users/trainers");
         setTrainerList(res.data);
+        console.log(res);
       } catch (err) {
         console.error(err);
       }
