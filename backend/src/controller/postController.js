@@ -7,6 +7,7 @@ import {
   deleteOnePost,
   addNewComment,
   getAllComments,
+  updateComment,
 } from "../services/postService.js";
 
 // async function create(req, res, next) {
@@ -57,6 +58,16 @@ async function indexUnread(req, res, next) {
   } catch (error) {
     console.error(error);
     res.status(500).send("Unable to retrieve posts.");
+  }
+}
+
+async function update(req, res, next) {
+  try {
+    await updateComment(req.params.id, req.query.id);
+    res.send("Comment updated");
+  } catch (error) {
+    console.error(error);
+    res.send("Unable to update comment");
   }
 }
 
@@ -115,4 +126,5 @@ export {
   deletePost,
   createComment,
   indexComment,
+  update,
 };

@@ -106,6 +106,21 @@ async function getAllComments(id) {
   }
 }
 
+// Finds the specific comment and update isRead field to be true
+async function updateComment(postId, commentId) {
+  Posts.findById(postId)
+    .then((post) => {
+      //return a matching comment
+      const comment = post.comments.id(commentId);
+      //update isRead field
+      comment.set({ isRead: true });
+      return post.save();
+    })
+    .catch((error) => {
+      throw error;
+    });
+}
+
 // Get all posts from DB where a post title/tag matches the input string
 async function searchPost(inputStr) {
   try {
@@ -136,4 +151,5 @@ export {
   addNewComment,
   getAllComments,
   searchPost,
+  updateComment,
 };

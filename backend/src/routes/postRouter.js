@@ -19,11 +19,14 @@ postRouter.post("/", upload.single("files"), postController.create);
 // Route to get all posts. Need to receive specific user id inside request body
 postRouter.get("/", postController.index);
 
-// Route to get all posts with unread comments. Need to receive specific user id inside request body
+// Route to get all posts for a specific user with unread comments. Need to receive specific user id inside request body
 postRouter.get("/unread", postController.indexUnread);
 
 // Route to get a specific post
 postRouter.get("/:id", postController.show);
+
+//Route to update a specific post
+postRouter.put("/:id", postController.update);
 
 // Route to delete a specific post
 postRouter.delete("/:id", postController.deletePost);
