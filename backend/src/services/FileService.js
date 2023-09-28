@@ -1,9 +1,10 @@
 import { Storage } from "@google-cloud/storage";
+import { env } from "process";
 import { v4 as uuidv4 } from "uuid";
 
 const storage = new Storage({
-  projectId: "animated-subset-399202",
-  keyFilename: "./src/config/google-cloud-key.json",
+  projectId: process.env.PROJECT_ID,
+  keyFilename: "../backend/google-cloud-key.json",
 });
 
 const bucket = storage.bucket("bkr-fitapp");
