@@ -25,7 +25,7 @@ const pages = [
   { display: "Profile", href: "/profile" },
 ];
 
-const settings = ["Account", "Dashboard", "Logout"];
+// const settings = ["Account", "Dashboard", "Logout"];
 
 function Navbar({ loggedIn }) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -150,6 +150,7 @@ function Navbar({ loggedIn }) {
           {loggedIn ? (
             <Box sx={{ display: "flex" }}>
               <SearchBar />
+              <Notifications />
               <Box sx={{ flexGrow: 0, marginLeft: "10px" }}>
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>

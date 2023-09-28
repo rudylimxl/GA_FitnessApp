@@ -60,7 +60,11 @@ const Notifications = () => {
 
   return (
     <div>
-      <IconButton onClick={count ? handleOpen : null} anchorEl={anchorEl}>
+      <IconButton
+        onClick={count ? handleOpen : null}
+        anchorEl={anchorEl}
+        color="primary"
+      >
         <Badge badgeContent={count} color="error">
           <NotificationsIcon />
         </Badge>
