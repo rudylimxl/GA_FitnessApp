@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 const AppHome = () => {
   return (
     <div>
-      <Navbar />
+      <Navbar loggedIn={true} />
       <Outlet />
       <img
         width="100%"

@@ -97,7 +97,7 @@ const Post = () => {
   } else {
     return (
       <>
-        <Navbar />
+        <Navbar loggedIn={true} />
         <button onClick={getImagebyDOM}>click</button>
         <div className={styles.layout}>
           {renderMedia}
