@@ -6,6 +6,7 @@ const commentSchema = new mongoose.Schema({
   comment: { type: String, required: true },
   date: { type: Date, default: new Date() },
   url: String,
+  isRead: { type: Boolean, default: false },
 });
 
 // Posts collection

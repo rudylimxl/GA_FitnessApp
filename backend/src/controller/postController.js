@@ -2,6 +2,7 @@ import { uploadToCloudStorage } from "../services/FileService.js";
 import {
   addPost,
   getAllPosts,
+  getAllPostsUnread,
   getOnePost,
   deleteOnePost,
   addNewComment,
@@ -43,6 +44,15 @@ async function index(req, res, next) {
     //changed from req.body.userId to req.query.userId
     //most HTTP services dont support request body in GET methods
     //using query params instead, so /posts?userId=12345
+    res.json(allposts);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Unable to retrieve posts.");
+  }
+}
+async function indexUnread(req, res, next) {
+  try {
+    let allposts = await getAllPostsUnread(req.query.userId);
     res.json(allposts);
   } catch (error) {
     console.error(error);
@@ -97,4 +107,12 @@ async function indexComment(req, res, next) {
   }
 }
 
-export { create, index, show, deletePost, createComment, indexComment };
+export {
+  create,
+  index,
+  indexUnread,
+  show,
+  deletePost,
+  createComment,
+  indexComment,
+};

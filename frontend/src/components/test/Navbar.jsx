@@ -16,12 +16,12 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import SearchBar from "../Searchbar";
+import Notifications from "./Notifications";
 
 //(rudy) edit the href target for navbar links here
 const pages = [
   { display: "Home", href: "/app" },
   { display: "Profile", href: "/profile" },
-  { display: "Notification", href: "/notifications" },
 ];
 const settings = ["Account", "Dashboard", "Logout"];
 
@@ -138,6 +138,7 @@ function Navbar() {
             ))}
           </Box>
           <SearchBar />
+          <Notifications />
           <Box sx={{ flexGrow: 0, marginLeft: "10px" }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
