@@ -24,7 +24,7 @@ const ProfilePage = () => {
 
   return (
     <div>
-      <Navbar />
+      <Navbar loggedIn={true} />
       <Profile info={info} profile="main" />
       <div style={{ border: "1px solid grey", marginBottom: "20px" }}></div>
       <ProfileTabs userId={info._id} userType={info.userType} />

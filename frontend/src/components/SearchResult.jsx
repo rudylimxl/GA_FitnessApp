@@ -27,7 +27,7 @@ const SearchResult = () => {
 
   return (
     <>
-      <Navbar />
+      <Navbar loggedIn={true} />
       <h1>Search results</h1>
       <List
         sx={{
