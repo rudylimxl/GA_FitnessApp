@@ -8,12 +8,14 @@ import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import SearchResult from "./components/SearchResult";
 import PostEditor from "./components/test/PostEditor.jsx";
+import Welcome from "./pages/Welcome";
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <Routes>
+          <Route path="/" element={<Welcome />} />
           <Route path="/app" element={<AppHome />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />

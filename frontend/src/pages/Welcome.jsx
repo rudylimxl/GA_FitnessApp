@@ -1,16 +1,17 @@
+import React from "react";
 import Navbar from "../components/test/Navbar";
-import { Outlet } from "react-router-dom";
+import { Box, Typography } from "@mui/material";
 
-const AppHome = () => {
+const Welcome = () => {
   return (
-    <div>
-      <Navbar loggedIn={true} />
+    <Box>
+      <Navbar loggedIn={false} />
       <img
         width="100%"
         src="https://storage.googleapis.com/bkr-fitapp/1strongerbg"
       ></img>
-    </div>
+    </Box>
   );
 };
 
-export default AppHome;
+export default Welcome;
