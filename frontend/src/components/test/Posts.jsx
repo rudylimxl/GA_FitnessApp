@@ -33,7 +33,7 @@ const Posts = ({ userId }) => {
 
   useEffect(() => {
     getPostLists();
-  }, []);
+  }, [userId]);
 
   return (
     <div>
