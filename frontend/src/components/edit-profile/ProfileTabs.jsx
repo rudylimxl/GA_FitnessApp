@@ -6,6 +6,7 @@ import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import Posts from "../test/Posts";
+import Clients from "../Clients";
 
 const ProfileTabs = ({ userId, userType }) => {
   const [value, setValue] = useState("1");
@@ -21,14 +22,18 @@ const ProfileTabs = ({ userId, userType }) => {
           <TabList onChange={handleChange} aria-label="lab API tabs example">
             <Tab label="Videos" value="1" />
             <Tab label="Workouts" value="2" />
-            {userType === "trainer" ? <Tab label="Clients" value="4" /> : null}
+            {userType === "trainer" ? <Tab label="Clients" value="3" /> : null}
           </TabList>
         </Box>
         <TabPanel value="1">
           <Posts userId={userId} />
         </TabPanel>
         <TabPanel value="2">Workouts</TabPanel>
-        {userType === "trainer" ? <TabPanel value="3">Clients</TabPanel> : null}
+        {userType === "trainer" ? (
+          <TabPanel value="3">
+            <Clients userId={userId} />
+          </TabPanel>
+        ) : null}
       </TabContext>
     </Box>
   );

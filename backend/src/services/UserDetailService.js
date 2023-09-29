@@ -6,9 +6,10 @@ const getUserDetails = async () => {
 };
 
 const getUserDetail = async (id) => {
-  const user = await UserDetail.findById(id);
+  const user = await UserDetail.findById(id).populate("clients");
   return user;
 };
+
 
 const getTrainers = async (limit) => {
   const trainers = await UserDetail.find({ userType: "trainer" }).limit(limit);
@@ -25,6 +26,20 @@ const createNewUserDetail = async (userDetails) => {
 const updateUserDetails = async (userId, profileDetails, next) => {
   try {
     await UserDetail.updateOne({ _id: userId }, profileDetails);
+  } catch (error) {
+    throw error;
+  }
+};
+
+// Adds a user id to the clients field of a specified trainer
+const addClient = async (clientId, trainerId) => {
+  try {
+    //find the trainer document
+    const trainer = await UserDetail.findById(trainerId);
+    //add the client to the clients field
+    trainer.clients.push(clientId);
+
+    await trainer.save();
   } catch (error) {
     throw error;
   }
@@ -52,4 +67,5 @@ export {
   getUserDetails,
   getUserDetail,
   getTrainers,
+  addClient,
 };

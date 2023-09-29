@@ -25,6 +25,7 @@ const userDetailSchema = new mongoose.Schema({
   avatarUrl: {
     type: String,
   },
+  clients: [{ type: mongoose.Schema.Types.ObjectId, ref: "UserDetail" }],
 });
 
 userDetailSchema.index({

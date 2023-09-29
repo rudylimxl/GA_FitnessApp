@@ -4,7 +4,7 @@ import User from "../models/User.js";
 
 const initializePassport = (passport) => {
   const authenticateUser = async (email, password, done) => {
-    const user = await User.findOne({ email: email });
+    const user = await User.findOne({ email: email }).populate("userDetail");
     if (user == null) {
       return done(null, false, { message: "Incorrect user or password" });
     }

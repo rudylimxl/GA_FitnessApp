@@ -22,7 +22,6 @@ const Posts = ({ userId }) => {
       })
       .then((res) => {
         setPosts(res.data);
-        console.log(res);
       })
       .catch((err) => {
         console.log(err);

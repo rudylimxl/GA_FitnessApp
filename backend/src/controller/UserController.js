@@ -7,6 +7,7 @@ import {
   getTrainers,
   getUserDetail,
   getUserDetails,
+  addClient,
 } from "../services/UserDetailService.js";
 import { createNewUser } from "../services/UserService.js";
 
@@ -20,6 +21,9 @@ const signup = async (req, res, next) => {
     // add a new user referencing the user detail
     await createNewUser(req.body, userDetailId);
     await createNewTrainerToUser(userDetailId, req.body.trainerId);
+
+    //add client to a trainer's list of clients in userdetails collection
+    await addClient(userDetailId, req.body.trainerId);
     res.status(201).send("User created sucessfully");
   } catch (error) {
     next(error);
@@ -74,6 +78,15 @@ const update = async (req, res) => {
   }
 };
 
+const updateTrainer = async (req, res) => {
+  try {
+    await addClient(req.query.userId, req.params.id);
+    res.status(200).send("Client added to client list");
+  } catch (error) {
+    res.status(500).send("Error updating profile.");
+  }
+};
+
 const login = (req, res, next) => {
   passport.authenticate("local", (err, user, info) => {
     if (!user) {
@@ -89,4 +102,4 @@ const login = (req, res, next) => {
   })(req, res, next);
 };
 
-export { signup, showOne, showAll, showTrainers, update, login };
+export { signup, showOne, showAll, showTrainers, update, login, updateTrainer };
