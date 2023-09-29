@@ -12,7 +12,7 @@ const Homepage = () => {
 
   const getTrainers = () => {
     axios
-      .get("http://localhost:8000/users/trainers")
+      .get("http://localhost:8000/users/trainers?limit=5")
       .then((res) => {
         setTrainerListState(res.data);
         console.log(res);
@@ -66,17 +66,20 @@ const Homepage = () => {
 
   return (
     <>
-      <Typography sx={{ margin: "20px" }}>Get Stronger</Typography>
-
+      {/* <Typography sx={{ margin: "20px" }}>Get Stronger</Typography> */}
+      <img
+        src="https://storage.googleapis.com/bkr-fitapp/banner.jpg"
+        width="100%"
+      ></img>
       <div className={styles.homeContainer}>
-        <Paper elevation={3} className={styles.trainerBox}>
+        <Paper elevation={6} className={styles.trainerBox}>
           <Typography variant="h5">Top Trainers</Typography>
           <TrainerListHome
             trainerListState={trainerListState}
             setTrainerListState={setTrainerListState}
           ></TrainerListHome>
         </Paper>
-        <Paper elevation={3} className={styles.rightBox}>
+        <Paper elevation={6} className={styles.rightBox}>
           <HomepagePosts
             loading={loading}
             posts={posts}

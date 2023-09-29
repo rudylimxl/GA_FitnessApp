@@ -22,6 +22,9 @@ postRouter.get("/", postController.index);
 // Route to get all posts for a specific user with unread comments. Need to receive specific user id inside request body
 postRouter.get("/unread", postController.indexUnread);
 
+// Route to get count of posts. Need to receive specific user id inside query param
+postRouter.get("/count", postController.count);
+
 // Route to get a specific post
 postRouter.get("/:id", postController.show);
 

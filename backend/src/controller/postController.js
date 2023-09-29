@@ -8,6 +8,7 @@ import {
   addNewComment,
   getAllComments,
   updateComment,
+  countPost,
 } from "../services/postService.js";
 
 // async function create(req, res, next) {
@@ -55,6 +56,16 @@ async function indexUnread(req, res, next) {
   try {
     let allposts = await getAllPostsUnread(req.query.userId);
     res.json(allposts);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Unable to retrieve posts.");
+  }
+}
+
+async function count(req, res, next) {
+  try {
+    let count = await countPost(req.query.userId);
+    res.json(count);
   } catch (error) {
     console.error(error);
     res.status(500).send("Unable to retrieve posts.");
@@ -127,4 +138,5 @@ export {
   createComment,
   indexComment,
   update,
+  count,
 };

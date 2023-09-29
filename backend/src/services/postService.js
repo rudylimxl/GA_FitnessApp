@@ -21,6 +21,16 @@ async function getAllPosts(userId) {
   }
 }
 
+//count number of post for specific user from DB
+async function countPost(userId) {
+  try {
+    let count = await Posts.where({ user: userId }).countDocuments();
+    return count;
+  } catch (error) {
+    throw error;
+  }
+}
+
 // Get all posts for a specific user with unread comments from DB
 async function getAllPostsUnread(userId) {
   const pipeline = [
@@ -152,4 +162,5 @@ export {
   getAllComments,
   searchPost,
   updateComment,
+  countPost,
 };

@@ -16,8 +16,8 @@ const PostItems = (props) => {
     return props.posts.toReversed().map((e, index) => {
       return (
         <>
-          <Link overlay href={`/post/${e._id}`} underline="none">
-            <Card sx={{ maxWidth: 300 }} key={index}>
+          <Link key={index} href={`/post/${e._id}`} underline="none">
+            <Card sx={{ maxWidth: 300 }}>
               <CardMedia
                 component={e.contentType.includes("image") ? "img" : "video"}
                 image={e.url}
