@@ -11,7 +11,7 @@ const getUserDetail = async (id) => {
 };
 
 const getTrainers = async () => {
-  const trainers = await UserDetail.find({ userType: "Trainer" });
+  const trainers = await UserDetail.find({ userType: "trainer" });
   return trainers;
 };
 

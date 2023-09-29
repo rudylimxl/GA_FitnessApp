@@ -10,13 +10,13 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
 const PostItems = (props) => {
-  if (props.loading) {
+  if (props.posts === "") {
     return <div>loading posts...</div>;
   } else {
     return props.posts.toReversed().map((e, index) => {
       return (
         <>
-          <Link overlay href={`/post/${e._id}`}>
+          <Link overlay href={`/post/${e._id}`} underline="none">
             <Card sx={{ maxWidth: 300 }} key={index}>
               <CardMedia
                 component={e.contentType.includes("image") ? "img" : "video"}
