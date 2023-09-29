@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 const Clients = ({ userId }) => {
-  const [clientList, setClientList] = useState();
+  const [clientList, setClientList] = useState([]);
 
   //   const trainerId = sessionStorage.getItem("userdetail");
 
@@ -19,7 +19,7 @@ const Clients = ({ userId }) => {
         const response = await axios.get(
           `http://localhost:8000/users/${userId}`
         );
-        setClientList(response.data);
+        setClientList(response.data.clients);
       } catch (error) {
         console.error(error);
       }
@@ -30,7 +30,7 @@ const Clients = ({ userId }) => {
 
   return (
     <>
-      {clientList ? (
+      {clientList.length > 0 ? (
         <List
           sx={{
             width: "100%",
@@ -39,10 +39,10 @@ const Clients = ({ userId }) => {
             margin: "0 auto",
           }}
         >
-          {clientList.clients.map((client) => (
+          {clientList.map((client) => (
             <>
               <Link overlay href={`/user/${client._id}`}>
-                <ListItem alignItems="flex-start">
+                <ListItem alignItems="flex-start" key={client._id}>
                   <ListItemAvatar>
                     <Avatar alt={client.username} src={client.avatarUrl} />
                   </ListItemAvatar>
