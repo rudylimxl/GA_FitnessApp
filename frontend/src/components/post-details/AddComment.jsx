@@ -45,6 +45,7 @@ const AddComment = (props) => {
       .catch((error) => {
         console.log(error);
       });
+    commentRef.current.value = "";
   };
 
   return (

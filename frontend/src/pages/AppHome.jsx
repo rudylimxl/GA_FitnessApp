@@ -1,14 +1,12 @@
+import Homepage from "../components/homepage/Homepage";
 import Navbar from "../components/test/Navbar";
 import { Outlet } from "react-router-dom";
 
 const AppHome = () => {
   return (
-    <div>
+    <div className="appContainer">
       <Navbar loggedIn={true} />
-      <img
-        width="100%"
-        src="https://storage.googleapis.com/bkr-fitapp/1strongerbg"
-      ></img>
+      <Homepage></Homepage>
     </div>
   );
 };
