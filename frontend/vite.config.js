@@ -5,9 +5,4 @@ import eslint from "vite-plugin-eslint";
 // https://vitejs.dev/config/
 export default {
   plugins: [react()],
-  build: {
-    rollupOptions: {
-      external: ["react-konva"], // Add 'react-konva' to the list of external modules
-    },
-  },
 };
