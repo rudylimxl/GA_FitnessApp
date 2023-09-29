@@ -15,8 +15,8 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
-import SearchBar from "../Searchbar";
-import Notifications from "./Notifications";
+import SearchBar from "../Searchbar.jsx";
+import Notifications from "./Notifications.jsx";
 import { useNavigate } from "react-router-dom";
 
 //(rudy) edit the href target for navbar links here
