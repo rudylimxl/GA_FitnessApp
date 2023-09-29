@@ -53,8 +53,8 @@ function Navbar({ loggedIn }) {
   };
 
   return (
-    <AppBar style={{ background: "#0D3B66" }} position="static">
-      <Container maxWidth="xl">
+    <AppBar style={{ background: "#004346" }} position="static">
+      <Container maxWidth={false}>
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
           <Typography

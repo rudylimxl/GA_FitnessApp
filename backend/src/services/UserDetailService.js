@@ -10,8 +10,8 @@ const getUserDetail = async (id) => {
   return user;
 };
 
-const getTrainers = async () => {
-  const trainers = await UserDetail.find({ userType: "Trainer" });
+const getTrainers = async (limit) => {
+  const trainers = await UserDetail.find({ userType: "trainer" }).limit(limit);
   return trainers;
 };
 

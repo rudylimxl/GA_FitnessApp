@@ -49,7 +49,7 @@ const showOne = async (req, res, next) => {
 
 const showTrainers = async (req, res) => {
   try {
-    const trainers = await getTrainers();
+    const trainers = await getTrainers(req.query.limit);
     res.json(trainers);
   } catch (error) {
     res.status(500).send("Unable to retrieve trainers");
