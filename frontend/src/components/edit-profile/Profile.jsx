@@ -8,6 +8,8 @@ import ProfileBtnGroup from "./ProfileBtnGroup";
 import Button from "@mui/material/Button";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { teal, purple } from "@mui/material/colors";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 
 const Profile = ({ info, profile }) => {
   const theme = createTheme({
@@ -16,6 +18,30 @@ const Profile = ({ info, profile }) => {
       secondary: purple,
     },
   });
+
+  //Get the trainerId from the url parameter
+  const trainerParams = useParams();
+
+  //Get the userId of the client
+  const userId = sessionStorage.getItem("userdetail");
+  const userType = sessionStorage.getItem("usertype");
+
+  const handleFollowTrainer = async () => {
+    try {
+      await axios.put(
+        `http://localhost:8000/users/trainer/${trainerParams.id}`,
+        {
+          params: {
+            userId: userId,
+          },
+        }
+      );
+
+      alert("You are now following this trainer");
+    } catch (error) {
+      alert(error);
+    }
+  };
 
   if (info === null) {
     return (
@@ -44,9 +70,21 @@ const Profile = ({ info, profile }) => {
               </Button>
             </ThemeProvider>
           ) : (
-            <Button variant="contained" color="secondary">
-              Trainer
-            </Button>
+            <>
+              <Button variant="contained" color="secondary">
+                Trainer
+              </Button>
+              {userType === "user" && (
+                <Button
+                  variant="contained"
+                  color="primary"
+                  sx={{ marginTop: 2 }}
+                  onClick={handleFollowTrainer}
+                >
+                  Follow Trainer
+                </Button>
+              )}
+            </>
           )}
         </div>
       </div>

@@ -31,7 +31,7 @@ const ProfileTabs = ({ userId, userType }) => {
         <TabPanel value="2">Workouts</TabPanel>
         {userType === "trainer" ? (
           <TabPanel value="3">
-            <Clients />
+            <Clients userId={userId} />
           </TabPanel>
         ) : null}
       </TabContext>

@@ -8,16 +8,16 @@ import Avatar from "@mui/material/Avatar";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const Clients = () => {
+const Clients = ({ userId }) => {
   const [clientList, setClientList] = useState();
 
-  const trainerId = sessionStorage.getItem("userdetail");
+  //   const trainerId = sessionStorage.getItem("userdetail");
 
   useEffect(() => {
     const getClients = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8000/users/${trainerId}`
+          `http://localhost:8000/users/${userId}`
         );
         setClientList(response.data);
       } catch (error) {

@@ -48,7 +48,9 @@ export default function Login() {
         password: data.get("password"),
       });
       if (res.status === 200) {
-        sessionStorage.setItem("userdetail", res.data.userDetail);
+        sessionStorage.setItem("userdetail", res.data.userDetail._id);
+        sessionStorage.setItem("usertype", res.data.userDetail.userType);
+
         navigate("/app");
       }
     } catch (error) {
