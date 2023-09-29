@@ -14,7 +14,7 @@ const ProfilePage = () => {
     //Gets profile info from database
     const getInfo = async () => {
       const res = await axios.get(
-        `http://localhost:8000/users/${userDetailId}`
+        `https://strongerfitnessapp.onrender.com/users/${userDetailId}`
       );
       setInfo(res.data);
     };

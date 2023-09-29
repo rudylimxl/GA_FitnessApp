@@ -43,10 +43,13 @@ export default function Login() {
 
     const data = new FormData(event.currentTarget);
     try {
-      const res = await axios.post("http://localhost:8000/login", {
-        email: data.get("email"),
-        password: data.get("password"),
-      });
+      const res = await axios.post(
+        "https://strongerfitnessapp.onrender.com/login",
+        {
+          email: data.get("email"),
+          password: data.get("password"),
+        }
+      );
       if (res.status === 200) {
         sessionStorage.setItem("userdetail", res.data.userDetail._id);
         sessionStorage.setItem("usertype", res.data.userDetail.userType);

@@ -17,7 +17,7 @@ const Clients = ({ userId }) => {
     const getClients = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8000/users/${userId}`
+          `https://strongerfitnessapp.onrender.com/users/${userId}`
         );
         setClientList(response.data.clients);
       } catch (error) {

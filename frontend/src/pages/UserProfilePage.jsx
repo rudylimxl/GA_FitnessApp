@@ -13,7 +13,9 @@ const UserProfilePage = () => {
   useEffect(() => {
     //Gets profile info from database
     const getInfo = async () => {
-      const res = await axios.get(`http://localhost:8000/users/${id}`);
+      const res = await axios.get(
+        `https://strongerfitnessapp.onrender.com/users/${id}`
+      );
       setInfo(res.data);
     };
 

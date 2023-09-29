@@ -33,7 +33,11 @@ const AddComment = (props) => {
     }
 
     axios
-      .post(`http://localhost:8000/posts/${props._id}/comments/`, formData, {})
+      .post(
+        `https://strongerfitnessapp.onrender.com/posts/${props._id}/comments/`,
+        formData,
+        {}
+      )
       .then((res) => {
         if (res.status === 201) {
           console.log(res.data);

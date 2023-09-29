@@ -7,7 +7,7 @@ const Posts = ({ userId }) => {
   const [success, setSuccess] = useState(false);
 
   // const getPostLists = () => {
-  //   axios.get("http://localhost:8000/posts/files").then((res) => {
+  //   axios.get("https://strongerfitnessapp.onrender.composts/files").then((res) => {
   //     allPosts = res.data.message;
   //     setFiles(allPosts);
   //   });
@@ -15,7 +15,7 @@ const Posts = ({ userId }) => {
 
   const getPostLists = () => {
     axios
-      .get("http://localhost:8000/posts", {
+      .get("https://strongerfitnessapp.onrender.com/posts", {
         params: {
           userId: userId,
         },

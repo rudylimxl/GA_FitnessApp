@@ -18,7 +18,7 @@ const Comments = ({ postId }) => {
     //get all comments for the specific post from database
     const getAllComments = async () => {
       const res = await axios.get(
-        `http://localhost:8000/posts/${postId}/comments`
+        `https://strongerfitnessapp.onrender.com/posts/${postId}/comments`
       );
       setAllComments(res.data);
     };

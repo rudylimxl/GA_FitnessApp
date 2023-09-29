@@ -12,7 +12,7 @@ const Homepage = () => {
 
   const getTrainers = () => {
     axios
-      .get("http://localhost:8000/users/trainers?limit=5")
+      .get("https://strongerfitnessapp.onrender.com/users/trainers?limit=5")
       .then((res) => {
         setTrainerListState(res.data);
         console.log(res);
@@ -31,7 +31,7 @@ const Homepage = () => {
     let tempPostsArr = [];
     for (const i of trainerListState) {
       axios
-        .get("http://localhost:8000/posts", {
+        .get("https://strongerfitnessapp.onrender.com/posts", {
           params: {
             userId: i._id,
           },

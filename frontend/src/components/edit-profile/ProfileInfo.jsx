@@ -7,7 +7,7 @@ const ProfileInfo = ({ info }) => {
   const [postCount, setPostCount] = useState(0);
   const getPostCount = (id) => {
     axios
-      .get(`http://localhost:8000/posts/count?userId=${id}`)
+      .get(`https://strongerfitnessapp.onrender.com/posts/count?userId=${id}`)
       .then((res) => {
         setPostCount(res.data);
       })

@@ -102,7 +102,10 @@ export default function Register() {
       newUser.trainerId = trainer;
     }
     try {
-      const res = await axios.post("http://localhost:8000/signup", newUser);
+      const res = await axios.post(
+        "https://strongerfitnessapp.onrender.com/signup",
+        newUser
+      );
       if (res.status === 201) {
         navigate("/login");
       }
@@ -131,7 +134,9 @@ export default function Register() {
   useEffect(() => {
     const getTrainerData = async () => {
       try {
-        const res = await axios.get("http://localhost:8000/users/trainers");
+        const res = await axios.get(
+          "https://strongerfitnessapp.onrender.com/users/trainers"
+        );
         setTrainerList(res.data);
         console.log(res);
       } catch (err) {

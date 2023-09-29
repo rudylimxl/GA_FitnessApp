@@ -30,7 +30,9 @@ const Notifications = () => {
   //navigates to the post and sets the comment to be read
   const readComment = async (postId, commentId) => {
     //Set the comment to be read by the user
-    await axios.put(`http://localhost:8000/posts/${postId}?id=${commentId}`);
+    await axios.put(
+      `https://strongerfitnessapp.onrender.com/posts/${postId}?id=${commentId}`
+    );
 
     //Navigate to the post page
     navigate(`/post/${postId}`);
@@ -40,7 +42,7 @@ const Notifications = () => {
     const getNotifications = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8000/posts/unread?userId=${userId}`
+          `https://strongerfitnessapp.onrender.com/posts/unread?userId=${userId}`
         );
 
         setUnreadComments(response.data);

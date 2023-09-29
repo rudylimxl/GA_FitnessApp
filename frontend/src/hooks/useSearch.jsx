@@ -11,7 +11,7 @@ const useSearch = (userInput) => {
   useEffect(() => {
     const getData = async () => {
       const response = await axios.get(
-        `http://localhost:8000/search?input=${userInput}`
+        `https://strongerfitnessapp.onrender.com/search?input=${userInput}`
       );
       setDataToReturn(response.data);
     };

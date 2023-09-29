@@ -29,7 +29,7 @@ const Profile = ({ info, profile }) => {
   const handleFollowTrainer = async () => {
     try {
       await axios.put(
-        `http://localhost:8000/users/trainer/${trainerParams.id}`,
+        `https://strongerfitnessapp.onrender.com/users/trainer/${trainerParams.id}`,
         {
           params: {
             userId: userId,

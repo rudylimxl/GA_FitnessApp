@@ -60,7 +60,10 @@ const EditProfile = () => {
 
     //Submit put request to backend server
     axios
-      .put(`http://localhost:8000/users/${userDetailId}`, formData)
+      .put(
+        `https://strongerfitnessapp.onrender.com/users/${userDetailId}`,
+        formData
+      )
       .then((res) => {
         //if successfull, close the modal
         if (res.status === 200) {

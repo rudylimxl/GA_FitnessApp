@@ -43,7 +43,7 @@ const CreatePost = ({ setSuccess, closeModal }) => {
     formData.append("files", files[0].file);
 
     axios
-      .post("http://localhost:8000/posts/", formData, {})
+      .post("https://strongerfitnessapp.onrender.com/posts/", formData, {})
       .then((res) => {
         if (res.status === 201) {
           console.log(res.data);

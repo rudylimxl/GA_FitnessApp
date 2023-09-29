@@ -26,7 +26,7 @@ const Post = () => {
   useEffect(() => {
     const getPost = async () => {
       const res = await axios.get(
-        `http://localhost:8000/posts/${postIdParams.id}`
+        `https://strongerfitnessapp.onrender.com/posts/${postIdParams.id}`
       );
       setPost(res.data);
       setLoaded(true);
