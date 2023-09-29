@@ -15,7 +15,7 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
-import SearchBar from "../Searchbar.jsx";
+import SearchBar from "../SearchBar.jsx";
 import Notifications from "./Notifications.jsx";
 import { useNavigate } from "react-router-dom";
 
