@@ -3,12 +3,11 @@ import react from "@vitejs/plugin-react";
 import eslint from "vite-plugin-eslint";
 
 // https://vitejs.dev/config/
-export default defineConfig({
+export default {
   plugins: [react()],
-});
-
-// server: {
-//   hmr: {
-//     overlay: false;
-//   }
-// }
+  build: {
+    rollupOptions: {
+      external: ["react-konva"], // Add 'react-konva' to the list of external modules
+    },
+  },
+};
